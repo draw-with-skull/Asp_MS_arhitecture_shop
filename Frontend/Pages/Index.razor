@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using Common;
+@using Frontend.src;
 
 <PageTitle>Home</PageTitle>
 
@@ -16,38 +17,22 @@
 		</div>
 	}
 
-	
-		
-			
-		
-	
-	@*<button @onclick="async()=>await GetData()"></button>*@
 
 </div>
 @code{
+	List<List<Product>> Items = new();
+	Request request = new();
 	protected override async Task OnInitializedAsync()
 	{
-		await GetData();
+		List<Product> Data = await request.GetAllItems();
+		GetData(Data);
 	}
-	List<List<Product>>Items=new();
-	
-	public async  Task GetData()
+
+
+	public void GetData(List<Product> data)
 	{
-
-		{
-			try
-			{
-				using var client = new HttpClient();
-				List<Product>Data = await client.GetFromJsonAsync<List<Product>>(Endpoints.STORAGE.GET_ITEMS_OUT);
-
-				Items.Add(new List<Product>(Data.GetRange(0, Data.Count * ( 1/ 3))));
-				Items.Add(new List<Product>(Data.GetRange(Data.Count * (1 / 3), Data.Count * (2 / 3))));
-				Items.Add(new List<Product>(Data.GetRange(Data.Count * (2 / 3), Data.Count )));
-			}
-			catch (Exception)
-			{
-				
-			}
-		}
+			Items.Add(new List<Product>(data.GetRange(0, data.Count * ( 1/ 3))));
+			Items.Add(new List<Product>(data.GetRange(data.Count * (1 / 3), data.Count * (2 / 3))));
+			Items.Add(new List<Product>(data.GetRange(data.Count * (2 / 3), data.Count )));
 	}
 }

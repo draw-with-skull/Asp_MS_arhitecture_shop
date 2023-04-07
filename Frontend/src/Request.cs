@@ -10,20 +10,15 @@ namespace Frontend.src
 			client = new();
 		}
 
-		public async void get()
+		private async void SaveItem(string EndPoint)
 		{
-			/*try
-			{
-				using var client = new HttpClient();
-				using HttpResponseMessage response = await client.GetAsync("");
-				TestClassCommon data = await response.Content.ReadFromJsonAsync<TestClassCommon>());
-				string datamessage = data.b;
-			}
-			catch (Exception)
-			{
-
-				string datamessage = "error";
-			}*/
+			
 		}
+		public async Task<List<Product>> GetAllItems()
+		{
+			return await client.GetFromJsonAsync<List<Product>>(Endpoints.STORAGE.GET_ITEMS_OUT);
+		}
+
+
 	}
 }
