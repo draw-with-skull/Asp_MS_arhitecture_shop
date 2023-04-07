@@ -1,0 +1,25 @@
+﻿@page "/home"
+@using Common
+<div>
+	<button onclick="@(async () => await getData())">Buton</button>
+	@datamessage
+</div>
+@code {
+	string datamessage { get; set; } = "asdasf";
+	public async Task getData()
+	{
+		datamessage = "message";
+
+		try
+		{
+			using var client = new HttpClient();
+			string response = await client.GetStringAsync(Endpoints.STORAGE.GET_ITEMS_OUT);
+			datamessage = response;
+		}
+			catch (Exception m)
+			{
+				Console.Write(m.Data);
+				 datamessage = "error";
+			}
+	}
+}

@@ -1,0 +1,48 @@
+﻿
+@page "/addItem"
+@using Common
+@using src
+
+
+<form>
+    @**@
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Product name</label>
+        <div class="col-sm-5"><input class="form-control" placeholder="Prduct name" @bind="name" type="text"></div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Product description</label>
+        <div class="col-sm-5"><input class="form-control" placeholder="Prduct description" @bind="description" type="text"></div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Product discount</label>
+        <div class="col-sm-5"><input class="form-control" placeholder="Prduct discount" @bind="discount" type="number"></div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Product price</label>
+        <div class="col-sm-5"><input class="form-control" placeholder="Prduct price" @bind="price" type="number"></div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Product image url</label>
+        <div class="col-sm-5"><input class="form-control" placeholder="Prduct image url" @bind="imageUrl" type="text"></div>
+    </div>
+    
+    <button  class="btn btn-primary" @onclick="Submit">Submit</button>
+</form>
+
+
+@code {
+        string name = "";
+        string description = "";
+        int discount ;
+        int price ;
+        string imageUrl = "";
+        Request request = new();
+
+
+        private void Submit()
+        {
+            Product product = new Product(name, description, discount, price, imageUrl);
+            request.Save(product);
+    }
+}

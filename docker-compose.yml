@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: FrontEnd/Dockerfile
+    ports:
+      - 3000:80
+    container_name: FrontEnd
+    depends_on: 
+      - storage
+      - db
+  storage:
+    build:
+      context: .
+      dockerfile: Storage/Dockerfile
+    ports:
+      - 3100:80
+    container_name: Storage
+  db:
+    container_name: Mongodb
+    image: mongo:latest
+    restart: always
+    ports:
+      - 27017:27017
+    command: 
+      - '--logpath'
+      - '/var/log/mongodb/mongod.log'
+    volumes:
+      - mongodb_data_container:/data/db
+
+  adminpanel:
+    image: ${DOCKER_REGISTRY-}adminpanel
+    build:
+      context: .
+      dockerfile: AdminPanel/Dockerfile
+    ports:
+      - 3200:80
+    container_name: AdminPanel
+
+volumes:
+  mongodb_data_container:
+
