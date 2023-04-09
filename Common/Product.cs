@@ -14,7 +14,13 @@ namespace Common
 		public int Discount { get; set; }
 		public int Price { get; set; }
 		public string ImageBase64 { get; set; }
-		public Product() { }
+		public Product() {
+			Name = "";
+			Description = "";
+			Discount = 0;
+			Price = 0;
+			ImageBase64 = "";
+		}
 		public Product(string name, string description,int discount,int price,string imageBase64) {
 			Name = name;
 			Description = description;
