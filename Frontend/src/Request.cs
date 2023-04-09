@@ -9,11 +9,6 @@ namespace Frontend.src
 		{
 			client = new();
 		}
-
-		private async void SaveItem(string EndPoint)
-		{
-			
-		}
 		public async Task<List<Product>> GetAllItems()
 		{
 			return await client.GetFromJsonAsync<List<Product>>(Endpoints.STORAGE.GET_ITEMS_OUT);

@@ -4,8 +4,7 @@
 @using src
 
 
-<form>
-    @**@
+<form enctype="multipart/form-data">
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Product name</label>
         <div class="col-sm-5"><input class="form-control" placeholder="Prduct name" @bind="name" type="text"></div>
@@ -22,27 +21,50 @@
         <label class="col-sm-2 col-form-label">Product price</label>
         <div class="col-sm-5"><input class="form-control" placeholder="Prduct price" @bind="price" type="number"></div>
     </div>
+
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Product image url</label>
-        <div class="col-sm-5"><input class="form-control" placeholder="Prduct image url" @bind="imageUrl" type="text"></div>
+        <label slass="form-label form-control form-control-sm">
+            <InputFile OnChange="@OnChange" multiple />
+        </label>
     </div>
-    
-    <button  class="btn btn-primary" @onclick="Submit">Submit</button>
+    <div class="col-md-12 text-center">
+    <button class="btn btn-primary" @onclick="SubmitItem">Submit</button>
+    </div>
 </form>
 
 
 @code {
-        string name = "";
-        string description = "";
-        int discount ;
-        int price ;
-        string imageUrl = "";
-        Request request = new();
+    string name = "";
+    string description = "";
+    int discount ;
+    int price ;
+    Request request = new();
+    string uploadMessage = "";
+    string imageBase64= "";
 
-
-        private void Submit()
-        {
-            Product product = new Product(name, description, discount, price, imageUrl);
-            request.Save(product);
+    private void SubmitItem()
+    {
+        request.SaveItem(new Product(name, description, discount, price, imageBase64));
     }
+
+
+    async Task OnChange(InputFileChangeEventArgs e)
+    {
+        string format = "image/jpeg";
+        long maxSize = 512000000;
+
+        foreach(IBrowserFile file in e.GetMultipleFiles())
+        {
+            if (string.Equals(file.ContentType, format, StringComparison.OrdinalIgnoreCase))
+            {
+                IBrowserFile image = await file.RequestImageFileAsync(format,1000,1000);
+                byte[]buffer = new byte[image.Size];
+
+                await image.OpenReadStream(maxAllowedSize: maxSize).ReadAsync(buffer);
+                imageBase64 = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
+            }
+        }
+    }
+
+
 }

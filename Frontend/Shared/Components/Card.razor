@@ -3,7 +3,7 @@
     <div class="card-header">
         <h3>@Name</h3>
     </div>
-    <img class="card-img-top imageThumbnail" src="Images/chair1.jpg" />
+    <img class="card-img-top imageThumbnail" src="@ImageBase64" />
     <div class="card-body text-center">@Description</div>
     <div class="card-body text-center text-capitalize">Price: @Price</div>
     @if (Discount > 0)
@@ -23,4 +23,6 @@
     public int Price { get; set; } = 0;
     [Parameter]
     public int Discount { get; set; } = 0;
+    [Parameter]
+    public string ImageBase64 { get; set; } = "";
 }

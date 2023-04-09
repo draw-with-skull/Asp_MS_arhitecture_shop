@@ -10,9 +10,7 @@
 		<div class="row">
 		@foreach(Product prod in list)
 		{
-			@*if(prod.Price!=0){*@
-			<Frontend.Shared.Components.Card Name="@prod.Name" Description="@prod.Description" Discount="@prod.Discount" Price="prod.Price"/>
-			@*}*@
+			<Frontend.Shared.Components.Card Name="@prod.Name" Description="@prod.Description" Discount="@prod.Discount" Price="prod.Price" ImageBase64="@prod.ImageBase64"/>
 		}
 		</div>
 	}

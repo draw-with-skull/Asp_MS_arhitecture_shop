@@ -11,12 +11,15 @@ namespace AdminPanel.src
             client = new();
         }
 
-        private async void SaveItem(Product  product,string EndPoint)
+        public async void SaveItem(Product  product)
         {
-            Console.WriteLine(EndPoint);
-            await client.PostAsJsonAsync(EndPoint, product);
+            await client.PostAsJsonAsync(Endpoints.STORAGE.POST_ITEM_OUT, product);
         }
-        public void Save(Product product) =>SaveItem(product, Endpoints.STORAGE.POST_ITEM_OUT);
+        public async Task<List<Product>> GetAllItems()
+        {
+
+            return await client.GetFromJsonAsync<List<Product>>(Endpoints.STORAGE.GET_ITEMS_OUT);
+        }
 
 
     }
