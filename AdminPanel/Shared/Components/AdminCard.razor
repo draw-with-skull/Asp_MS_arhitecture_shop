@@ -1,4 +1,5 @@
-﻿
+﻿@using AdminPanel.src;
+@using Common
 <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
     <div class="card-header">
         <h3>@ID</h3>
@@ -10,11 +11,12 @@
     <div class="card-body text-center">Discount: @Discount</div>
 
     <div class="card-footer text-center">
-        <Button class="btn btn-primary m-1" @onclick="EditItem">Add to  cart</Button>
-        <Button class="btn btn-danger m-1" @onclick="RemoveItem">Add to  cart</Button>
+        <Button class="btn btn-primary m-1" @onclick="EditItem">Edit</Button>
+        <Button class="btn btn-danger m-1" @onclick="RemoveItem">Delete</Button>
     </div>
 </div>
 @code {
+    Request request = new();
     [Parameter]
     public string ID { get; set; } = "";
     [Parameter]
@@ -28,10 +30,12 @@
 
     public void EditItem()
     {
-        
+
     }
-    public void RemoveItem()
+    public async Task RemoveItem()
     {
-        
+        Product product = new();
+        product.Id = ID;
+        await request.RemoveOneByID(product);
     }
 }

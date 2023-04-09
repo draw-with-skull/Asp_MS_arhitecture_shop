@@ -8,13 +8,13 @@ namespace Common
 	{
 		[BsonId]
 		[BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
-		public string Id { get; set; }
+		public string Id { get; set; } = "";
 		public string Name { get; set; }
 		public string Description { get; set; }
 		public int Discount { get; set; }
 		public int Price { get; set; }
 		public string ImageBase64 { get; set; }
-
+		public Product() { }
 		public Product(string name, string description,int discount,int price,string imageBase64) {
 			Name = name;
 			Description = description;

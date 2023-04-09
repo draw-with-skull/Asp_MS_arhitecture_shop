@@ -14,13 +14,19 @@ namespace Common
 			//used to call storage
             public static readonly string GET_ITEM_OUT = STORAGE_BASE + "/get-item";
 			public static readonly string GET_ITEMS_OUT = STORAGE_BASE + "/get-items";
+
 			public static readonly string POST_ITEM_OUT = STORAGE_BASE + "/post-item";
 			public static readonly string POST_ITEMS_OUT = STORAGE_BASE + "/post-items";
+
+			public static readonly string DELETE_ITEM_ID_OUT = STORAGE_BASE+"/delete-item-by-id";
 			//used for routing storage 
             public static readonly string GET_ITEM_IN = "/get-item";
             public static readonly string GET_ITEMS_IN = "/get-items";
+
             public static readonly string POST_ITEM_IN = "/post-item";
             public static readonly string POST_ITEMS_IN = "/post-items";
+
+			public static readonly string DELETE_ITEM_ID_IN = "/delete-item-by-id";
         }
 	}
 }

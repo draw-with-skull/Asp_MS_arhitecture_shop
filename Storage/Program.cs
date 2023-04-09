@@ -22,7 +22,10 @@ app.MapGet(Endpoints.STORAGE.GET_ITEMS_IN, () =>
 {
     return mongo.GetAll();
 });
-app.MapPost(Endpoints.STORAGE.POST_ITEM_IN, (Product product) => {
-    mongo.Inser(product);
+
+app.MapPost(Endpoints.STORAGE.POST_ITEM_IN, (Product product) => mongo.Inser(product));
+app.MapPost(Endpoints.STORAGE.DELETE_ITEM_ID_IN, (Product product) =>
+{
+    mongo.RemoveOneByID(product);
 });
 app.Run();

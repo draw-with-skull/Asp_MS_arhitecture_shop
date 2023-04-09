@@ -1,4 +1,5 @@
 ﻿using Common;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Storage.src
@@ -25,8 +26,12 @@ namespace Storage.src
         }
         public async Task<List<Product>> GetAll()
         {
-            List<Product> results = await collection.Find(_ => true).ToListAsync();
-            return results;
+            return await collection.Find(_ => true).ToListAsync();
+        }
+
+        public void RemoveOneByID(Product product)
+        {
+            collection.DeleteOneAsync(P=>P.Id == product.Id);
         }
 
     }
