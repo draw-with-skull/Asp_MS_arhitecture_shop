@@ -1,8 +1,9 @@
 ﻿using Common;
+using Common.DataStructure;
 
 namespace Frontend.src
 {
-	public class Request
+    public class Request
 	{
 		private HttpClient client;
 		public Request()
