@@ -9,17 +9,5 @@
 	public async Task getData()
 	{
 		datamessage = "message";
-
-		try
-		{
-			using var client = new HttpClient();
-			string response = await client.GetStringAsync(Endpoints.STORAGE.GET_ITEMS_OUT);
-			datamessage = response;
-		}
-			catch (Exception m)
-			{
-				Console.Write(m.Data);
-				 datamessage = "error";
-			}
 	}
 }
