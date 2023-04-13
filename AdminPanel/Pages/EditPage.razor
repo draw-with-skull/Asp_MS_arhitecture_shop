@@ -1,0 +1,73 @@
+﻿@page "/edit-item/{item_id}"
+@using Common
+@using src
+
+
+<form enctype="multipart/form-data">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Product name</label>
+        <div class="col-sm-5"><input class="form-control" placeholder="Prduct name" @bind="product.Name" type="text"></div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Product description</label>
+        <div class="col-sm-5"><input class="form-control" placeholder="Prduct description" @bind="product.Description" type="text"></div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Product discount</label>
+        <div class="col-sm-5"><input class="form-control" placeholder="Prduct discount" @bind="product.Discount" type="number"></div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Product price</label>
+        <div class="col-sm-5"><input class="form-control" placeholder="Prduct price" @bind="product.Price" type="number"></div>
+    </div><div class="form-group row">
+        <label class="col-sm-2 col-form-label">Tags</label>
+        <div class="col-sm-5"><input class="form-control" placeholder="tag 1,tag 2"  type="text"></div>
+    </div>
+    <div class="form-group m-3" style="min-width: 18rem; max-width:30.5%;">
+        <label class="col-sm-2 col-form-label">image</label>
+        <img class="card-img-top imageThumbnail" src="@product.ImageBase64" />
+    </div>
+    <div class="form-group row">
+        <label slass="form-label form-control form-control-sm">
+            <InputFile OnChange="@OnChange" multiple />
+        </label>
+    </div>
+    <div class="col-md-12 text-center">
+    @*<button class="btn btn-primary" @onclick="SubmitItem">Edit</button>*@
+    </div>
+</form>
+
+
+@code {
+    [Parameter]
+    public string item_id { get; set; } = "";
+    private Product product=new();
+    private Request request= new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        //product = await request.GetItemByID(item_id);
+    }
+
+
+    //private async void SubmitItem() =>await request.EditItem(product);
+
+
+    async Task OnChange(InputFileChangeEventArgs e)
+    {
+        string format = "image/jpeg";
+        long maxSize = 512000000;
+
+        foreach(IBrowserFile file in e.GetMultipleFiles())
+        {
+            if (string.Equals(file.ContentType, format, StringComparison.OrdinalIgnoreCase))
+            {
+                IBrowserFile image = await file.RequestImageFileAsync(format,1000,1000);
+                byte[]buffer = new byte[image.Size];
+
+                await image.OpenReadStream(maxAllowedSize: maxSize).ReadAsync(buffer);
+                product.ImageBase64 = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
+            }
+        }
+    }
+}

@@ -25,6 +25,5 @@ namespace AdminPanel.src
             Console.WriteLine(product.Id);
             await client.PostAsJsonAsync(Endpoints.STORAGE.DELETE_ITEM_ID_OUT, product);
         }
-
     }
 }
