@@ -1,6 +1,5 @@
 ﻿using Common.DataStructure;
 using System.Net.Http.Json;
-using Common.DataStructure;
 namespace Common.Utilitary
 {
     public class Request
@@ -17,7 +16,7 @@ namespace Common.Utilitary
         }
 
         public async Task<Product> GetItemByID(string id) {
-            return new();
+            return await client.GetFromJsonAsync<Product>(Endpoints.STORAGE.GET_ITEM+$"/{id}")??new();
         }
 
         public async Task RemoveItemByID(string id)
@@ -27,12 +26,12 @@ namespace Common.Utilitary
 
         public async Task SaveItem(Product product)
         {
-           await client.PostAsJsonAsync<Product>(Endpoints.STORAGE.POST_ITEM, product);
+           await client.PostAsJsonAsync(Endpoints.STORAGE.POST_ITEM, product);
         }
 
         public async Task UpdateItem(Product product)
         {
-            //
+            await client.PostAsJsonAsync(Endpoints.STORAGE.UPDATE_ITEM, product);
         }
     }
 }

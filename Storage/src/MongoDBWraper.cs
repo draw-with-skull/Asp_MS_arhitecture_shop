@@ -9,9 +9,9 @@ namespace Storage.src
         private readonly string connectionString = "mongodb://Mongodb:27017";
         private readonly string dbName = "Database";
         private readonly string collectionName = "Products";
-        private MongoClient client;
-        private IMongoDatabase db;
-        private IMongoCollection<Product> collection;
+        private readonly MongoClient client;
+        private readonly IMongoDatabase db;
+        private readonly IMongoCollection<Product> collection;
 
         public MongoDBWraper()
         {
@@ -34,9 +34,22 @@ namespace Storage.src
             collection.DeleteOneAsync(P=>P.Id == Id);
         }
 
-        public async Task<Product> GetItemByID(string Id) {
+        public async Task<Product> GetItemByID(string Id) 
+        {
             return (await collection.FindAsync(P => P.Id == Id)).First();
         }
+
+        public async Task UpdateItem(Product product) 
+        {
+            UpdateDefinition<Product> definition = Builders<Product>.Update
+                .Set(P => P.Name, product.Name)
+                .Set(P=>P.Description,product.Description)
+                .Set(P=>P.Discount,product.Discount)
+                .Set(P=>P.Price,product.Price)
+                .Set(P=>P.ImageBase64,product.ImageBase64);
+            await collection.UpdateOneAsync(P=>P.Id==product.Id,definition);
+        }
+
 
     }
 }

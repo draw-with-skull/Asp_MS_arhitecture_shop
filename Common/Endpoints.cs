@@ -19,6 +19,8 @@ namespace Common
 			
 			public const string DELETE_ITEM = "/delete-item";
 			public const string DELETE_ITEMS = "/delete-items";
+			
+			public const string UPDATE_ITEM = "/update-items";
         }
 		public  class STORAGE
 		{
@@ -30,6 +32,8 @@ namespace Common
 
 			public const string DELETE_ITEM = STORAGE_BASE + STORAGE_INTERNAL.DELETE_ITEM;
 			public const string DELETE_ITEMS = STORAGE_BASE + STORAGE_INTERNAL.DELETE_ITEMS;
+
+			public const string UPDATE_ITEM = STORAGE_BASE + STORAGE_INTERNAL.UPDATE_ITEM;
 		}
 	}
 }
