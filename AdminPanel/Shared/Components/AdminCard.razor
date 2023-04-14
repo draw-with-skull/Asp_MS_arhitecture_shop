@@ -1,4 +1,4 @@
-﻿@using AdminPanel.src;
+﻿@using Common.Utilitary;
 @using Common.DataStructure;
 
 <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
@@ -36,7 +36,6 @@
     public async Task RemoveItem()
     {
         Product product = new();
-        product.Id = ID;
-        await request.RemoveOneByID(product);
+        await request.RemoveItemByID(ID);
     }
 }

@@ -15,18 +15,16 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 
-app.MapGet(Endpoints.STORAGE.GET_ITEM_IN, () =>
+app.MapGet(Endpoints.STORAGE_INTERNAL.GET_ITEM+"/{id}", (string id) =>
 {
-    return "default store route";
+    return mongo.GetItemByID(id);
 });
-app.MapGet(Endpoints.STORAGE.GET_ITEMS_IN, () =>
+app.MapGet(Endpoints.STORAGE_INTERNAL.GET_ITEMS, () =>
 {
     return mongo.GetAll();
 });
 
-app.MapPost(Endpoints.STORAGE.POST_ITEM_IN, (Product product) => mongo.Inser(product));
-app.MapPost(Endpoints.STORAGE.DELETE_ITEM_ID_IN, (Product product) =>
-{
-    mongo.RemoveOneByID(product);
-});
+app.MapPost(Endpoints.STORAGE_INTERNAL.POST_ITEM, (Product product) => mongo.Inser(product));
+app.MapDelete(Endpoints.STORAGE_INTERNAL.DELETE_ITEM +"/{id}", (string id) => mongo.RemoveOneByID(id));
+
 app.Run();

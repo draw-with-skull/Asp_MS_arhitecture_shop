@@ -8,25 +8,28 @@ namespace Common
 {
 	public static class Endpoints
 	{
-		public static class STORAGE
-		{
-			private static readonly string STORAGE_BASE = "http://storage";
-			//used to call storage
-            public static readonly string GET_ITEM_OUT = STORAGE_BASE + "/get-item";
-			public static readonly string GET_ITEMS_OUT = STORAGE_BASE + "/get-items";
+        private const string STORAGE_BASE = "http://storage";
+        public  class STORAGE_INTERNAL
+        {
+			public const string GET_ITEM = "/get-item";
+			public const string GET_ITEMS = "/get-items";
 
-			public static readonly string POST_ITEM_OUT = STORAGE_BASE + "/post-item";
-			public static readonly string POST_ITEMS_OUT = STORAGE_BASE + "/post-items";
-
-			public static readonly string DELETE_ITEM_ID_OUT = STORAGE_BASE+"/delete-item-by-id";
-			//used for routing storage 
-            public static readonly string GET_ITEM_IN = "/get-item";
-            public static readonly string GET_ITEMS_IN = "/get-items";
-
-            public static readonly string POST_ITEM_IN = "/post-item";
-            public static readonly string POST_ITEMS_IN = "/post-items";
-
-			public static readonly string DELETE_ITEM_ID_IN = "/delete-item-by-id";
+			public const string POST_ITEM = "/post-item";
+			public const string POST_ITEMS = "/post-items";
+			
+			public const string DELETE_ITEM = "/delete-item";
+			public const string DELETE_ITEMS = "/delete-items";
         }
+		public  class STORAGE
+		{
+			public const string GET_ITEM = STORAGE_BASE + STORAGE_INTERNAL.GET_ITEM;
+			public const string GET_ITEMS = STORAGE_BASE + STORAGE_INTERNAL.GET_ITEMS;
+			
+			public const string POST_ITEM = STORAGE_BASE + STORAGE_INTERNAL.POST_ITEM;
+			public const string POST_ITEMS = STORAGE_BASE + STORAGE_INTERNAL.POST_ITEMS;
+
+			public const string DELETE_ITEM = STORAGE_BASE + STORAGE_INTERNAL.DELETE_ITEM;
+			public const string DELETE_ITEMS = STORAGE_BASE + STORAGE_INTERNAL.DELETE_ITEMS;
+		}
 	}
 }

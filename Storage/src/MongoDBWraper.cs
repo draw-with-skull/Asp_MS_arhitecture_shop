@@ -29,9 +29,13 @@ namespace Storage.src
             return await collection.Find(_ => true).ToListAsync();
         }
 
-        public void RemoveOneByID(Product product)
+        public void RemoveOneByID(string Id)
         {
-            collection.DeleteOneAsync(P=>P.Id == product.Id);
+            collection.DeleteOneAsync(P=>P.Id == Id);
+        }
+
+        public async Task<Product> GetItemByID(string Id) {
+            return (await collection.FindAsync(P => P.Id == Id)).First();
         }
 
     }
