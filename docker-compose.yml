@@ -11,6 +11,9 @@ services:
     depends_on: 
       - storage
       - db
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 0.1
   storage:
     build:
       context: .
@@ -18,6 +21,9 @@ services:
     ports:
       - 3100:80
     container_name: Storage
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 0.1
   db:
     container_name: Mongodb
     image: mongo:latest
@@ -29,7 +35,9 @@ services:
       - '/var/log/mongodb/mongod.log'
     volumes:
       - mongodb_data_container:/data/db
-
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 0.1
   adminpanel:
     image: ${DOCKER_REGISTRY-}adminpanel
     build:
@@ -38,7 +46,9 @@ services:
     ports:
       - 3200:80
     container_name: AdminPanel
-
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 0.1
 volumes:
   mongodb_data_container:
 
