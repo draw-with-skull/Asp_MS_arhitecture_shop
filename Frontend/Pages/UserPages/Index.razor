@@ -1,9 +1,20 @@
 ﻿@page "/"
+
+@inject IJSRuntime js
+
 @using Common.Utilitary;
 @using Common.DataStructure;
 
 <PageTitle>Home</PageTitle>
+<AuthorizeView>
+	<Authorized>
+		<h1>Hello, @context.User.Identity.Name!</h1>
+	</Authorized>
+	<NotAuthorized>
+		<h1>Hello, Guest!</h1>
+	</NotAuthorized>
 
+</AuthorizeView>
 <div>
 	@foreach (List<Product> list in Items)
 	{
@@ -18,6 +29,18 @@
 
 </div>
 @code{
+	[CascadingParameter]
+	private Task<AuthenticationState> authenticationState { get; set; }
+
+	private async Task DisplayGreetingAlert()
+	{
+		var authState = await authenticationState;
+		var message = $"Hello {authState.User.Identity.Name}";
+		await js.InvokeVoidAsync("alert", message);
+	}
+
+
+
 	List<List<Product>> Items = new();
 	Request request = new();
 	protected override async Task OnInitializedAsync()
