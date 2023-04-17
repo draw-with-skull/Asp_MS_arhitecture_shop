@@ -15,9 +15,9 @@ namespace Storage.Controllers
             { 
                 mongo.Insert(user);
             });
-            app.MapPost(Endpoints.STORAGE_INTERNAL.GET_USER, async (User user) =>
+            app.MapGet(Endpoints.STORAGE_INTERNAL.GET_USER + "/{username}/{password}", async (string username,string password) =>
             {
-                return await mongo.CheckUser(user.Username, user.Password);
+                return await mongo.CheckUser(username,password);
             });
         }
     }

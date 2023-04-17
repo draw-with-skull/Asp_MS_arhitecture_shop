@@ -50,7 +50,6 @@
             user.Password = Hashing.GetHash(password);
             password = "";
             passwordRepet = "";
-            Console.WriteLine("signup  " + user.Username);
             await request.SaveItem(user);
             navManager.NavigateTo("/login", true);
         }

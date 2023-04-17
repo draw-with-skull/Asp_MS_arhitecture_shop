@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.Authorization;
+﻿using Common.DataStructure;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using System.Security.Claims;
 
@@ -7,7 +8,7 @@ namespace Frontend.Src.Authentication
     public class CustomAuthStateProvider : AuthenticationStateProvider
     {
         private readonly ProtectedSessionStorage sessionStorage;
-        private ClaimsPrincipal anonymus = new ClaimsPrincipal(new ClaimsIdentity());
+        private readonly ClaimsPrincipal anonymus = new (new ClaimsIdentity());
 
         public CustomAuthStateProvider(ProtectedSessionStorage sessionStorage)
         {
@@ -18,8 +19,8 @@ namespace Frontend.Src.Authentication
         {
             try
             {
-                ProtectedBrowserStorageResult<UserSession> userSessionStorageResult = await sessionStorage.GetAsync<UserSession>("UserSession");
-                UserSession userSession = userSessionStorageResult.Success ? userSessionStorageResult.Value : null;
+                ProtectedBrowserStorageResult<User> userSessionStorageResult = await sessionStorage.GetAsync<User>("UserSession");
+                User userSession = userSessionStorageResult.Success ? userSessionStorageResult.Value : null;
 
                 if (userSession == null)
                 {
@@ -27,10 +28,10 @@ namespace Frontend.Src.Authentication
                 }
 
 
-                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
+                ClaimsPrincipal claimsPrincipal = new(new ClaimsIdentity(new List<Claim>
             {
                 new Claim(ClaimTypes.Name,userSession.Username),
-                new Claim(ClaimTypes.Role, userSession.Role)
+                new Claim(ClaimTypes.Email, userSession.Email)
 
             }, "CustomAuth"));
 
@@ -42,17 +43,15 @@ namespace Frontend.Src.Authentication
             }
         }
 
-        public async Task UpdateAuthenticationState(UserSession userSession)
+        public async Task UpdateAuthenticationState(User user)
         {
             ClaimsPrincipal claimsPrincipal;
-            if (userSession != null)
+            if (user != null)
             {
-                await sessionStorage.SetAsync("UserSession", userSession);
+                await sessionStorage.SetAsync("UserSession", user);
                 claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, userSession.Username),
-                    new Claim(ClaimTypes.Role, userSession.Role)
-
+                    new Claim(ClaimTypes.Name, user.Username)
                 }));
             }
             else{

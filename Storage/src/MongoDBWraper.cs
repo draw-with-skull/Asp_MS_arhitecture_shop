@@ -66,11 +66,17 @@ namespace Storage.src
 
         public async Task<User> CheckUser(string name,string password)
         {
-            User user = (await collectionUser.FindAsync(U => (U.Username == name && U.Password == password))).First();
-            if (user != null)
+            User user;
+            try
             {
+               user = (await collectionUser.FindAsync(U => (U.Username == name && U.Password == password))).First();
                 user.Password = "";
             }
+            catch (Exception)
+            {
+                user = new();
+            }
+
             return user;
         }
 

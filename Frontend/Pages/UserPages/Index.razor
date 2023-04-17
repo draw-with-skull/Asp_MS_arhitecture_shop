@@ -1,9 +1,9 @@
 ﻿@page "/"
 
 @inject IJSRuntime js
-
 @using Common.Utilitary;
 @using Common.DataStructure;
+@using System.Security.Claims;
 
 <PageTitle>Home</PageTitle>
 <AuthorizeView>
@@ -29,24 +29,14 @@
 
 </div>
 @code{
-	[CascadingParameter]
-	private Task<AuthenticationState> authenticationState { get; set; }
-
-	private async Task DisplayGreetingAlert()
-	{
-		var authState = await authenticationState;
-		var message = $"Hello {authState.User.Identity.Name}";
-		await js.InvokeVoidAsync("alert", message);
-	}
-
-
-
 	List<List<Product>> Items = new();
 	Request request = new();
+	
 	protected override async Task OnInitializedAsync()
 	{
 		List<Product> Data = await request.GetAllItems();
 		GenerateStructureForDisplay(Data);
+
 	}
 
 

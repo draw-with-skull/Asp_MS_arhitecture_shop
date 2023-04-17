@@ -38,8 +38,11 @@ namespace Common.Utilitary
         #region User
         public async Task SaveItem(User user)
         {
-            Console.WriteLine("req  " + user.Username);
             await client.PostAsJsonAsync(Endpoints.STORAGE.POST_USER, user);
+        }
+        public async Task<User> GetUserData(string username,string password)
+        {
+            return await client.GetFromJsonAsync<User>(Endpoints.STORAGE.GET_USER+ $"/{username}/{password}");
         }
         #endregion
     }
