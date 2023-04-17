@@ -1,8 +1,5 @@
 
-using Common;
-using Common.DataStructure;
 using Storage.Controllers;
-using Storage.src;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +12,7 @@ var app = builder.Build();
 app.UseStaticFiles();
 
 MongoController mongoController = new(app);
+UserController userController = new(app);
 
 
 app.Run();

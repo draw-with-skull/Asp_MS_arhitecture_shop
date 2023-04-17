@@ -9,7 +9,7 @@ namespace Storage.Controllers
         MongoDBWraper mongo;
         public MongoController(WebApplication app)
         {
-             mongo = new();
+            mongo = new();
             app.MapGet(Endpoints.STORAGE_INTERNAL.GET_ITEM + "/{id}", (string id) =>
             {
                 return mongo.GetItemByID(id);
@@ -20,7 +20,7 @@ namespace Storage.Controllers
             });
 
             app.MapPost(Endpoints.STORAGE_INTERNAL.UPDATE_ITEM, (Product product) => mongo.UpdateItem(product));
-            app.MapPost(Endpoints.STORAGE_INTERNAL.POST_ITEM, (Product product) => mongo.Inser(product));
+            app.MapPost(Endpoints.STORAGE_INTERNAL.POST_ITEM, (Product product) => mongo.Insert(product));
 
             app.MapDelete(Endpoints.STORAGE_INTERNAL.DELETE_ITEM + "/{id}", (string id) => mongo.RemoveOneByID(id));
 
