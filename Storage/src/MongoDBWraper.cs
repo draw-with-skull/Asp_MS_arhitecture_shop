@@ -50,6 +50,5 @@ namespace Storage.src
             await collection.UpdateOneAsync(P=>P.Id==product.Id,definition);
         }
 
-
     }
 }

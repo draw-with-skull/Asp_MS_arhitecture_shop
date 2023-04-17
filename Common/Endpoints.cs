@@ -21,6 +21,9 @@ namespace Common
 			public const string DELETE_ITEMS = "/delete-items";
 			
 			public const string UPDATE_ITEM = "/update-items";
+
+			public const string POST_USER = "/post-user";
+			public const string GET_USER = "/get-user";
         }
 		public  class STORAGE
 		{
@@ -34,6 +37,9 @@ namespace Common
 			public const string DELETE_ITEMS = STORAGE_BASE + STORAGE_INTERNAL.DELETE_ITEMS;
 
 			public const string UPDATE_ITEM = STORAGE_BASE + STORAGE_INTERNAL.UPDATE_ITEM;
-		}
+
+			public const string POST_USER = STORAGE_BASE + STORAGE_INTERNAL.POST_USER;
+			public const string GET_USER = STORAGE_BASE + STORAGE_INTERNAL.GET_USER;
+        }
 	}
 }
