@@ -5,6 +5,7 @@
 @inject IJSRuntime js
 @inject AuthenticationStateProvider authStateProvider
 @inject NavigationManager navManager
+@inject Blazored.SessionStorage.ISessionStorageService session
 
 <div class="row">
     <div class="col-lg-4 offset-lg-4 pt-4 pb-4 border">
@@ -43,6 +44,9 @@
             await js.InvokeVoidAsync("alert", "Invalid User Name or Password");
             return;
         }
+
+        await session.SetItemAsync("UserData", user);
+
 
         var customAuthStateProvider = (CustomAuthStateProvider)authStateProvider;
         await customAuthStateProvider.UpdateAuthenticationState(new User

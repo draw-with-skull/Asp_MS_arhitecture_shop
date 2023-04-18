@@ -31,7 +31,6 @@ namespace Frontend.Src.Authentication
                 ClaimsPrincipal claimsPrincipal = new(new ClaimsIdentity(new List<Claim>
             {
                 new Claim(ClaimTypes.Name,userSession.Username),
-                new Claim(ClaimTypes.Email, userSession.Email)
 
             }, "CustomAuth"));
 
