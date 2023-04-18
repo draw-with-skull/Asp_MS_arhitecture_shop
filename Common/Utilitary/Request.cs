@@ -19,6 +19,11 @@ namespace Common.Utilitary
             return await client.GetFromJsonAsync<Product>(Endpoints.STORAGE.GET_ITEM+$"/{id}")??new();
         }
 
+        public async Task<List<Product>> GetDiscounted()
+        {
+            return await client.GetFromJsonAsync<List<Product>>(Endpoints.STORAGE.GET_DISCOUNTED_ITEMS)??new();
+        }
+
         public async Task RemoveItemByID(string id)
         {
             await client.DeleteAsync(Endpoints.STORAGE.DELETE_ITEM + $"/{id}");

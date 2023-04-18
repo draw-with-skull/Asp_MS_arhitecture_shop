@@ -30,11 +30,16 @@ namespace Storage.src
         {
             await collectionProduct.InsertOneAsync(product);
         }
+
         public async Task<List<Product>> GetAll()
         {
             return await collectionProduct.Find(_ => true).ToListAsync();
         }
 
+        public async Task<List<Product>> GetDiscountedItems()
+        {
+            return await collectionProduct.Find(P => P.Discount > 0).ToListAsync();
+        }
         public void RemoveOneByID(string Id)
         {
             collectionProduct.DeleteOneAsync(P => P.Id == Id);
