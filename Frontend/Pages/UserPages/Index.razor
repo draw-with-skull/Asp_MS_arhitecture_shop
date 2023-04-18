@@ -7,16 +7,6 @@
 @using System.Security.Claims;
 
 <PageTitle>Home</PageTitle>
-<AuthorizeView>
-	<Authorized>
-		<h1>Hello, @context.User.Identity.Name!</h1>
-		<h1>@user.Email</h1>
-	</Authorized>
-	<NotAuthorized>
-		<h1>Hello, Guest!</h1>
-	</NotAuthorized>
-
-</AuthorizeView>
 <div>
 	@foreach (List<Product> list in Items)
 	{
