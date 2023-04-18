@@ -24,6 +24,11 @@ namespace Storage.Controllers
                 return mongo.GetDiscountedItems();
             });
 
+            app.MapGet(Endpoints.STORAGE_INTERNAL.GET_ITEM_BY_TAG + "/{tag}", (string tag) =>
+            {
+                return mongo.GetItemsWithTag(tag);
+            });
+
             app.MapPost(Endpoints.STORAGE_INTERNAL.UPDATE_ITEM, (Product product) => mongo.UpdateItem(product));
             app.MapPost(Endpoints.STORAGE_INTERNAL.POST_ITEM, (Product product) => mongo.Insert(product));
 

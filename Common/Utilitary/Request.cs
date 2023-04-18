@@ -24,6 +24,11 @@ namespace Common.Utilitary
             return await client.GetFromJsonAsync<List<Product>>(Endpoints.STORAGE.GET_DISCOUNTED_ITEMS)??new();
         }
 
+        public async Task<List<Product>> GetItemsWithTag(string tag)
+        {
+            return await client.GetFromJsonAsync<List<Product>>(Endpoints.STORAGE.GET_ITEM_BY_TAG + $"/{tag}")??new();    
+        }
+
         public async Task RemoveItemByID(string id)
         {
             await client.DeleteAsync(Endpoints.STORAGE.DELETE_ITEM + $"/{id}");
@@ -33,6 +38,7 @@ namespace Common.Utilitary
         {
            await client.PostAsJsonAsync(Endpoints.STORAGE.POST_ITEM, product);
         }
+        
         
 
         public async Task UpdateItem(Product product)

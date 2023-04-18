@@ -40,6 +40,11 @@ namespace Storage.src
         {
             return await collectionProduct.Find(P => P.Discount > 0).ToListAsync();
         }
+        public async Task<List<Product>>GetItemsWithTag(string tag)
+        {
+            return await collectionProduct.Find(P => P.Tags.Contains(tag)).ToListAsync();
+
+        }
         public void RemoveOneByID(string Id)
         {
             collectionProduct.DeleteOneAsync(P => P.Id == Id);

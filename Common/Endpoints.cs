@@ -14,6 +14,7 @@ namespace Common
 			public const string GET_ITEM = "/get-item";
 			public const string GET_ITEMS = "/get-items";
 			public const string GET_DISCOUNTED_ITEMS = "/get-discounted-items";
+			public const string GET_ITEM_BY_TAG = "/get-item-by-tag";
 
 			public const string POST_ITEM = "/post-item";
 			public const string POST_ITEMS = "/post-items";
@@ -31,6 +32,7 @@ namespace Common
 			public const string GET_ITEM = STORAGE_BASE + STORAGE_INTERNAL.GET_ITEM;
 			public const string GET_ITEMS = STORAGE_BASE + STORAGE_INTERNAL.GET_ITEMS;
 			public const string GET_DISCOUNTED_ITEMS = STORAGE_BASE + STORAGE_INTERNAL.GET_DISCOUNTED_ITEMS;
+			public const string GET_ITEM_BY_TAG = STORAGE_BASE + STORAGE_INTERNAL.GET_ITEM_BY_TAG;
 
 
             public const string POST_ITEM = STORAGE_BASE + STORAGE_INTERNAL.POST_ITEM;
