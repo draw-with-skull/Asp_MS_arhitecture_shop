@@ -14,6 +14,8 @@ namespace Common.DataStructure
         public int Discount { get; set; }
         public int Price { get; set; }
         public string ImageBase64 { get; set; }
+
+        public List<string> Tags { get; set; }
         public Product()
         {
             Name = "";
@@ -21,15 +23,18 @@ namespace Common.DataStructure
             Discount = 0;
             Price = 0;
             ImageBase64 = "";
+            Tags = new();
         }
-        public Product(string name, string description, int discount, int price, string imageBase64)
+        public Product(string name, string description, int discount, int price, string imageBase64, List<string> tags)
         {
             Name = name;
             Description = description;
             Discount = discount > 100 ? discount % 100 : discount;          //make sure discount is not grater than 100;
-            Discount = Discount < 0 ? -Discount : Discount;  //make shure discount is not negative;
+            Discount = Discount < 0 ? -Discount : Discount;                 //make shure discount is not negative;
             Price = price < 0 ? -price : price;                            //make sure price is not negative;
             ImageBase64 = imageBase64;
+            Tags = tags;
+
         }
     }
 }

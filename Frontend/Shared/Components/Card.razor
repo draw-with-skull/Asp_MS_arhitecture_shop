@@ -10,6 +10,7 @@
     {
         <div class="card-body text-center">Discount: @Discount %</div>
     }
+    <div class="card-body text-center text-capitalize">Tags: @Tags</div>
     <div class="card-footer text-center">
         <a href="#" class="btn btn-primary m-1">Add to  cart</a>
     </div>
@@ -25,4 +26,6 @@
     public int Discount { get; set; } = 0;
     [Parameter]
     public string ImageBase64 { get; set; } = "";
+    [Parameter]
+    public string Tags { get; set; } = "";
 }

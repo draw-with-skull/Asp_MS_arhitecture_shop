@@ -23,7 +23,7 @@
 		<div class="row">
 		@foreach(Product prod in list)
 		{
-			<Frontend.Shared.Components.Card Name="@prod.Name" Description="@prod.Description" Discount="@prod.Discount" Price="prod.Price" ImageBase64="@prod.ImageBase64"/>
+			<Frontend.Shared.Components.Card Name="@prod.Name" Description="@prod.Description" Discount="@prod.Discount" Price="prod.Price" ImageBase64="@prod.ImageBase64" Tags="@String.Join(",",prod.Tags)"/>
 		}
 		</div>
 	}

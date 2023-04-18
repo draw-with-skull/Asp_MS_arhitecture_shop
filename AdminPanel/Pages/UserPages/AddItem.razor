@@ -5,23 +5,32 @@
 
 
 <form enctype="multipart/form-data">
+    @*Name*@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Product name</label>
         <div class="col-sm-5"><input class="form-control" placeholder="Prduct name" @bind="name" type="text"></div>
     </div>
+    @*Description*@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Product description</label>
         <div class="col-sm-5"><input class="form-control" placeholder="Prduct description" @bind="description" type="text"></div>
     </div>
+    @*Discount*@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Product discount</label>
         <div class="col-sm-5"><input class="form-control" placeholder="Prduct discount" @bind="discount" type="number"></div>
     </div>
+    @*Price*@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Product price</label>
         <div class="col-sm-5"><input class="form-control" placeholder="Prduct price" @bind="price" type="number"></div>
     </div>
 
+    @*Tags*@
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Tags</label>
+        <div class="col-sm-5"><input class="form-control" placeholder="tag 1,tag 2" @bind="tagsAsString" type ="text"></div>
+    </div>
     <div class="form-group row">
         <label slass="form-label form-control form-control-sm">
             <InputFile OnChange="@OnChange" multiple />
@@ -41,10 +50,13 @@
     Request request = new();
     string uploadMessage = "";
     string imageBase64= "";
+    string tagsAsString = "";
+    List<string> Tags = new();
 
     private void SubmitItem()
     {
-        request.SaveItem(new Product(name, description, discount, price, imageBase64));
+        Tags = tagsAsString.Split(",").ToList();
+        request.SaveItem(new Product(name, description, discount, price, imageBase64,Tags));
     }
 
 

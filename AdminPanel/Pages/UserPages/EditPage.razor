@@ -4,33 +4,42 @@
 
 
 <form enctype="multipart/form-data">
+    @*ID*@
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Product name</label>
+        <label class="col-sm-2 col-form-label">Product ID</label>
         <div class="col-sm-5">@product.Id</div>
     </div>
+    @*Name*@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Product name</label>
         <div class="col-sm-5"><input class="form-control" placeholder="Prduct name" @bind="product.Name" type="text"></div>
     </div>
+    @*Description*@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Product description</label>
         <div class="col-sm-5"><input class="form-control" placeholder="Prduct description" @bind="product.Description" type="text"></div>
     </div>
+    @*Discount*@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Product discount</label>
         <div class="col-sm-5"><input class="form-control" placeholder="Prduct discount" @bind="product.Discount" type="number"></div>
     </div>
+    @*Price*@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Product price</label>
         <div class="col-sm-5"><input class="form-control" placeholder="Prduct price" @bind="product.Price" type="number"></div>
-    </div><div class="form-group row">
-        <label class="col-sm-2 col-form-label">Tags</label>
-        <div class="col-sm-5"><input class="form-control" placeholder="tag 1,tag 2"  type="text"></div>
     </div>
+    @*Tags*@
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Tags</label>
+        <div class="col-sm-5"><input class="form-control" placeholder="tag 1,tag 2" @bind="tags" type="text"></div>
+    </div>
+    @*Display current Image*@
     <div class="form-group m-3" style="min-width: 18rem; max-width:30.5%;">
         <label class="col-sm-2 col-form-label">image</label>
         <img class="card-img-top imageThumbnail" src="@product.ImageBase64" />
     </div>
+    @*Select Image*@
     <div class="form-group row">
         <label slass="form-label form-control form-control-sm">
             <InputFile OnChange="@OnChange" multiple />
@@ -45,12 +54,14 @@
 @code {
     [Parameter]
     public string item_id { get; set; } = "";
+    public string tags = String.Empty;
     private Product product=new();
     private Request request= new();
 
     protected override async Task OnInitializedAsync()
     {
         product = await request.GetItemByID(item_id);
+        tags = String.Join(",", product.Tags); 
     }
 
 
