@@ -8,7 +8,7 @@
 		<div class="row">
 		@foreach(Product prod in list)
 		{
-				<AdminCard ID="@prod.Id" Name="@prod.Name" Description="@prod.Description" Discount="@prod.Discount" Price="prod.Price"/>
+				<AdminCard ID="@prod.Id" Name="@prod.Name" Description="@prod.Description" Discount="@prod.Discount" Price="prod.Price" Tags="@String.Join(",",prod.Tags)"/>
 		}
 		</div>
 	}

@@ -1,6 +1,7 @@
 ﻿@page "/edit-item/{item_id}"
 @using Common.DataStructure
 @using Common.Utilitary
+@inject NavigationManager navManager
 
 
 <form enctype="multipart/form-data">
@@ -60,13 +61,15 @@
 
     protected override async Task OnInitializedAsync()
     {
-        product = await request.GetItemByID(item_id);
         tags = String.Join(",", product.Tags); 
+        product = await request.GetItemByID(item_id);
     }
 
 
-    private async void SubmitItem() =>await request.UpdateItem(product);
-
+    private async void SubmitItem(){
+        product.Tags = tags.Split(",").ToList();
+        await request.UpdateItem(product);
+    }
 
     async Task OnChange(InputFileChangeEventArgs e)
     {

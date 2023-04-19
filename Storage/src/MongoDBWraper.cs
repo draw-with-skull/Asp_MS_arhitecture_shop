@@ -62,6 +62,7 @@ namespace Storage.src
                 .Set(P => P.Description, product.Description)
                 .Set(P => P.Discount, product.Discount)
                 .Set(P => P.Price, product.Price)
+                .Set(P => P.Tags, product.Tags)
                 .Set(P => P.ImageBase64, product.ImageBase64);
             await collectionProduct.UpdateOneAsync(P => P.Id == product.Id, definition);
         }
