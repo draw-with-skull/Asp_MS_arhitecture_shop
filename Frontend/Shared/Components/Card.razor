@@ -41,7 +41,6 @@
         User user = await session.GetItemAsync<User>("UserData");
         List<Product> productList = await request.GetUserProductList(user.Username);
         Product product = new(Name, "", Discount, Price, "", new());
-        Console.WriteLine("\n\n\n\n" + ID + "\n\n\n\n");
         product.Id = ID;
         productList.Add(product);
         user.ShoppingCartProducts = productList;
