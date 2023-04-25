@@ -9,22 +9,14 @@ namespace Common.DataStructure
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string Id { get; set; } = "";
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public int Discount { get; set; }
-        public int Price { get; set; }
-        public string ImageBase64 { get; set; }
+        public string Name { get; set; } = "";
+        public string Description { get; set; } = "";
+        public int Discount { get; set; } = 0;
+        public int Price { get; set; } = 0;
+        public string ImageBase64 { get; set; } = "";
+        public List<string> Tags { get; set; } = new();
 
-        public List<string> Tags { get; set; }
-        public Product()
-        {
-            Name = "";
-            Description = "";
-            Discount = 0;
-            Price = 0;
-            ImageBase64 = "";
-            Tags = new();
-        }
+        public Product() { }
         public Product(string name, string description, int discount, int price, string imageBase64, List<string> tags)
         {
             Name = name;

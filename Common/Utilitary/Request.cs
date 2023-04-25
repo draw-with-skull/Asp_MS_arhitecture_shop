@@ -39,8 +39,7 @@ namespace Common.Utilitary
            await client.PostAsJsonAsync(Endpoints.STORAGE.POST_ITEM, product);
         }
         
-        
-
+       
         public async Task UpdateItem(Product product)
         {
             await client.PostAsJsonAsync(Endpoints.STORAGE.UPDATE_ITEM, product);
@@ -53,7 +52,16 @@ namespace Common.Utilitary
         }
         public async Task<User> GetUserData(string username,string password)
         {
-            return await client.GetFromJsonAsync<User>(Endpoints.STORAGE.GET_USER+ $"/{username}/{password}");
+            return await client.GetFromJsonAsync<User>(Endpoints.STORAGE.GET_USER+ $"/{username}/{password}")??new();
+        }
+
+        public async Task<List<Product>> GetUserProductList(string username)
+        {
+            return await client.GetFromJsonAsync<List<Product>>(Endpoints.STORAGE.GET_USER_SHOPPING_CART+$"/{username}")??new();
+        }
+        public async Task UpdateUserShoppingCart(User user)
+        {
+            await client.PostAsJsonAsync(Endpoints.STORAGE.UPDATE_CART_LIST,user);
         }
         #endregion
     }

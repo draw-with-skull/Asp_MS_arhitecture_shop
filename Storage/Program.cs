@@ -1,4 +1,3 @@
-
 using Storage.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +10,7 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 
-MongoController mongoController = new(app);
+ProductController mongoController = new(app);
 UserController userController = new(app);
 
 

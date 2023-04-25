@@ -23,9 +23,11 @@ namespace Common
 			public const string DELETE_ITEMS = "/delete-items";
 			
 			public const string UPDATE_ITEM = "/update-items";
+			public const string UPDATE_CART_LIST = "/update-product-list";
 
 			public const string POST_USER = "/post-user";
 			public const string GET_USER = "/get-user";
+			public const string GET_USER_SHOPPING_CART = "/get-user-shopping-cart";
         }
 		public  class STORAGE
 		{
@@ -42,9 +44,12 @@ namespace Common
 			public const string DELETE_ITEMS = STORAGE_BASE + STORAGE_INTERNAL.DELETE_ITEMS;
 
 			public const string UPDATE_ITEM = STORAGE_BASE + STORAGE_INTERNAL.UPDATE_ITEM;
+			public const string UPDATE_CART_LIST = STORAGE_BASE + STORAGE_INTERNAL.UPDATE_CART_LIST;
 
-			public const string POST_USER = STORAGE_BASE + STORAGE_INTERNAL.POST_USER;
+
+            public const string POST_USER = STORAGE_BASE + STORAGE_INTERNAL.POST_USER;
 			public const string GET_USER = STORAGE_BASE + STORAGE_INTERNAL.GET_USER;
+			public const string GET_USER_SHOPPING_CART = STORAGE_BASE + STORAGE_INTERNAL.GET_USER_SHOPPING_CART;
 
         }
 	}

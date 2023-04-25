@@ -4,10 +4,10 @@ using Storage.src;
 
 namespace Storage.Controllers
 {
-    public class MongoController
+    public class ProductController
     {
-        MongoDBWraper mongo;
-        public MongoController(WebApplication app)
+        readonly MongoDBWraper mongo;
+        public ProductController(WebApplication app)
         {
             mongo = new();
             app.MapGet(Endpoints.STORAGE_INTERNAL.GET_ITEM + "/{id}", (string id) =>

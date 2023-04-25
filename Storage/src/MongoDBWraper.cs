@@ -80,7 +80,7 @@ namespace Storage.src
             User user;
             try
             {
-               user = (await collectionUser.FindAsync(U => (U.Username == name && U.Password == password))).First();
+                user = (await collectionUser.FindAsync(U => (U.Username == name && U.Password == password))).First();
                 user.Password = "";
             }
             catch (Exception)
@@ -89,6 +89,16 @@ namespace Storage.src
             }
 
             return user;
+        }
+
+        public async Task<List<Product>> GetUserShoppingCart(string username)
+        {
+            return (await collectionUser.FindAsync(P => P.Username == username)).First().ShoppingCartProducts;
+        }
+
+        public async Task UpdateUserShoppingCart(User user) {
+            UpdateDefinition<User> definition = Builders<User>.Update.Set(P => P.ShoppingCartProducts, user.ShoppingCartProducts);
+            await collectionUser.UpdateOneAsync(P => P.Username == user.Username, definition);
         }
 
         #endregion
