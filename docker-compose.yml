@@ -39,7 +39,6 @@ services:
     mem_reservation: 128M
     cpus: 0.1
   adminpanel:
-    image: ${DOCKER_REGISTRY-}adminpanel
     build:
       context: .
       dockerfile: AdminPanel/Dockerfile
