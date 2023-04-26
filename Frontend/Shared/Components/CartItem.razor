@@ -1,4 +1,5 @@
 ﻿@using Common.Utilitary;
+@inject NavigationManager navManager
 <div class="col-xl-6 col-md-12 mb-4">
     <div class="card card-body">
         <div class="d-flex justify-content-between p-md-1">
@@ -25,5 +26,6 @@
     private async void RemoveItem()
     {
         await request.RemoveItemFromUserCart(UserId, ProductId);
+        navManager.NavigateTo("/shopping_cart", true);
     }
 }
