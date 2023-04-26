@@ -40,5 +40,6 @@
     {
         Product product = new();
         await request.RemoveItemByID(ID);
+        navManager.NavigateTo("/manageItems", true);
     }
 }
