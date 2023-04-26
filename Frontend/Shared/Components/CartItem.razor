@@ -1,0 +1,21 @@
+﻿<div class="col-xl-6 col-md-12 mb-4">
+    <div class="card card-body">
+        <div class="d-flex justify-content-between p-md-1">
+            <div class="d-flex flex-row"><div><h4>@Name</h4><p class="mb-0">@Discount %</p></div></div>
+            <div class="align-self-center"><h2 class="h1 mb-0">@Price</h2></div>
+            <button type="button" class="btn btn-danger"><h2 class="h1 mb-0">Remove</h2></button>
+        </div>
+    </div>
+</div>
+@code {
+    [Parameter]
+    public string UserId { get; set; } = string.Empty;
+    [Parameter]
+    public string ProductId { get; set; } = string.Empty;
+    [Parameter]
+    public string Name { get; set; }=string.Empty;
+    [Parameter]
+    public int Price { get; set; }= 0;
+    [Parameter]
+    public int Discount { get; set; } = 0;
+}

@@ -1,29 +1,21 @@
 ﻿@page "/shopping_cart"
 @using Common.DataStructure;
 @using Common.Utilitary;
-
+@using Frontend.Shared.Components
 @inject Blazored.SessionStorage.ISessionStorageService session
 
-<PageTitle>Garden</PageTitle>
+<PageTitle>Cart</PageTitle>
 
 <AuthorizeView>
     <NotAuthorized>
         <h1 class="text-center">Please login to use the cart</h1>
     </NotAuthorized>
     <Authorized>
-		<p>This is the garden page</p>
 		<div>
-			@foreach (List<Product> list in Items)
+			@foreach (Product product in items)
 			{
-				<div class="row">
-					@foreach (Product prod in list)
-					{
-						<Frontend.Shared.Components.Card Name="@prod.Name" Description="@prod.Description" Discount="@prod.Discount" Price="prod.Price" ImageBase64="@prod.ImageBase64" Tags="@String.Join(",",prod.Tags)" />
-					}
-				</div>
+				<CartItem Name="@product.Name" Discount="@product.Discount" Price="@product.Price" ProductId="@product.Id" UserId="@user.Id"></CartItem>
 			}
-
-
 		</div>
 		
     </Authorized>
@@ -31,21 +23,21 @@
 
 
 @code {
-	List<List<Product>> Items = new();
-	Request request = new();
+	public List<Product> items { get; set; } = new();
 	User user = new();
-
 	protected override async Task OnInitializedAsync()
 	{
-		//String Data = (await session.GetItemAsync<User>("UserData")).ProductsListJsonEncoded;
-		//GenerateStructureForDisplay(Data);
-	}
-
-
-	public void GenerateStructureForDisplay(List<Product> data)
-	{
-		Items.Add(new List<Product>(data.GetRange(0, data.Count * (1 / 3))));
-		Items.Add(new List<Product>(data.GetRange(data.Count * (1 / 3), data.Count * (2 / 3))));
-		Items.Add(new List<Product>(data.GetRange(data.Count * (2 / 3), data.Count)));
+		try
+		{
+			Request request = new();
+			
+			user = await session.GetItemAsync<User>("UserData");
+			items = await request.GetUserProductList(user.Username);
+		}
+		catch (Exception)
+		{
+			
+			//Ignore
+		}
 	}
 }
