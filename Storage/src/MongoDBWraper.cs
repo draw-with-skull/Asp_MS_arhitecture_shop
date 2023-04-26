@@ -101,6 +101,14 @@ namespace Storage.src
             await collectionUser.UpdateOneAsync(P => P.Username == user.Username, definition);
         }
 
+        public async Task RemoveProductFromUserCart(string userId,string productId)
+        {
+            UpdateDefinition<User> definition = Builders<User>.Update.PullFilter(
+                P => P.ShoppingCartProducts,
+                Builders<Product>.Filter.Where(P => P.Id == productId));
+            await collectionUser.UpdateOneAsync(P => P.Id == userId,definition);
+        }
+
         #endregion
     }
 }

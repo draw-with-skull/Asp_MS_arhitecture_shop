@@ -28,6 +28,10 @@ namespace Storage.Controllers
             {
                await mongo.UpdateUserShoppingCart(user);
             });
+            app.MapDelete(Endpoints.STORAGE_INTERNAL.DELETE_ITEM_FROM_USER_CART + "/{userId}/{productId}", async (string userId, string productId) =>
+            {
+                await mongo.RemoveProductFromUserCart(userId, productId);
+            });
         }
     }
 }

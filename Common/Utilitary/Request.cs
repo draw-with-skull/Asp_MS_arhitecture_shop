@@ -34,6 +34,11 @@ namespace Common.Utilitary
             await client.DeleteAsync(Endpoints.STORAGE.DELETE_ITEM + $"/{id}");
         }
 
+        public async Task RemoveItemFromUserCart(string userId,string productId)
+        {
+            await client.DeleteAsync(Endpoints.STORAGE.DELETE_ITEM_FROM_USER_CART + $"/{userId}/{productId}");
+        }
+
         public async Task SaveItem(Product product)
         {
            await client.PostAsJsonAsync(Endpoints.STORAGE.POST_ITEM, product);

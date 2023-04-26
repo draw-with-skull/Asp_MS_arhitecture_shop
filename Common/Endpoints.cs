@@ -21,6 +21,7 @@ namespace Common
 			
 			public const string DELETE_ITEM = "/delete-item";
 			public const string DELETE_ITEMS = "/delete-items";
+			public const string DELETE_ITEM_FROM_USER_CART = "/delete-item-from-user-cart";
 			
 			public const string UPDATE_ITEM = "/update-items";
 			public const string UPDATE_CART_LIST = "/update-product-list";
@@ -42,6 +43,7 @@ namespace Common
 
 			public const string DELETE_ITEM = STORAGE_BASE + STORAGE_INTERNAL.DELETE_ITEM;
 			public const string DELETE_ITEMS = STORAGE_BASE + STORAGE_INTERNAL.DELETE_ITEMS;
+			public const string DELETE_ITEM_FROM_USER_CART = STORAGE_BASE + STORAGE_INTERNAL.DELETE_ITEM_FROM_USER_CART;
 
 			public const string UPDATE_ITEM = STORAGE_BASE + STORAGE_INTERNAL.UPDATE_ITEM;
 			public const string UPDATE_CART_LIST = STORAGE_BASE + STORAGE_INTERNAL.UPDATE_CART_LIST;
