@@ -48,6 +48,18 @@ services:
     mem_limit: 512m
     mem_reservation: 128M
     cpus: 0.1
+  order:
+    build:
+      context: .
+      dockerfile: Order/Dockerfile
+    ports:
+      - 3300:80
+    container_name: Order
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 0.1
+
 volumes:
   mongodb_data_container:
+
 

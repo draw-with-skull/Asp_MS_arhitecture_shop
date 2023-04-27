@@ -6,7 +6,8 @@
       "serviceActions": {
         "frontend": "StartDebugging",
         "storage": "StartDebugging",
-        "adminpanel": "StartDebugging"
+        "adminpanel": "StartDebugging",
+        "order": "StartDebugging"
       }
     }
   }

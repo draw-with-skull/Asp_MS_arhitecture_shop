@@ -11,12 +11,14 @@ namespace Storage.src
         
         private readonly string collectionProductName = "Products";
         private readonly string collectionUserName = "Users";
+        private readonly string collectionOrderName = "Order";
 
         private readonly MongoClient client;
         private readonly IMongoDatabase db;
 
         private readonly IMongoCollection<Product> collectionProduct;
         private readonly IMongoCollection<User> collectionUser;
+        private readonly IMongoCollection<Order> collectionOrder;
 
         public MongoDBWraper()
         {
@@ -24,6 +26,7 @@ namespace Storage.src
             db = client.GetDatabase(dbName);
             collectionProduct = db.GetCollection<Product>(collectionProductName);
             collectionUser = db.GetCollection<User>(collectionUserName);
+            collectionOrder = db.GetCollection<Order>(collectionOrderName);
         }
         #region Product_Area
         public async void Insert(Product product)
@@ -108,6 +111,13 @@ namespace Storage.src
                 Builders<Product>.Filter.Where(P => P.Id == productId));
             await collectionUser.UpdateOneAsync(P => P.Id == userId,definition);
         }
-        #endregion
-    }
+		#endregion
+
+		#region Order
+        public async Task Inser(Order order)
+        {
+            await collectionOrder.InsertOneAsync(order);
+        }
+		#endregion
+	}
 }

@@ -44,7 +44,7 @@ namespace Common.Utilitary
            await client.PostAsJsonAsync(Endpoints.STORAGE.POST_ITEM, product);
         }
         
-       
+        
         public async Task UpdateItem(Product product)
         {
             await client.PostAsJsonAsync(Endpoints.STORAGE.UPDATE_ITEM, product);
@@ -67,6 +67,17 @@ namespace Common.Utilitary
         public async Task UpdateUserShoppingCart(User user)
         {
             await client.PostAsJsonAsync(Endpoints.STORAGE.UPDATE_CART_LIST,user);
+        }
+		#endregion
+
+		#region Order
+		public async Task SaveItem(Order order)
+		{
+			await client.PostAsJsonAsync(Endpoints.STORAGE.POST_ORDER, order);
+		}
+		public async Task SendOrder(Order order)
+        {
+            await client.PostAsJsonAsync(Endpoints.ORDER.PLACE_ORDER, order);
         }
         #endregion
     }
