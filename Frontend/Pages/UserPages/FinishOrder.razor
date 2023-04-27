@@ -1,0 +1,42 @@
+﻿@page "/finish-order/{userId}"
+@using Common.DataStructure;
+@using Common.Utilitary;
+<form enctype="multipart/form-data">
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">Name</label>
+		<div class="col-sm-5"><input class="form-control" placeholder="Name" @bind="name" type="text"></div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">Surname</label>
+		<div class="col-sm-5"><input class="form-control" placeholder="Surname" @bind="surname" type="text"></div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">City</label>
+		<div class="col-sm-5"><input class="form-control" placeholder="The city where you are from" @bind="city" type="text"></div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">Address</label>
+		<div class="col-sm-5"><input class="form-control" placeholder="Address" @bind="address" type="text"></div>
+	</div>
+	<div class="col-md-12 text-center">
+		<button class="btn btn-primary" @onclick="PlaceOrder">Submit</button>
+	</div>
+</form>
+@code {
+	[Parameter]
+	public string userId { get; set; } = string.Empty;
+	public string name { get; set; } = string.Empty;
+	public string surname { get; set; } = string.Empty;
+	public string city { get; set; } = string.Empty;
+	public string address { get; set; } = string.Empty;
+	Request request = new();
+	List<Product> products=new();
+
+
+	public async void PlaceOrder()
+	{
+		Order order=new Order(name,surname,userId,city,address);
+		await request.SaveItem(order);
+		await request.SendOrder(order);
+	}
+}

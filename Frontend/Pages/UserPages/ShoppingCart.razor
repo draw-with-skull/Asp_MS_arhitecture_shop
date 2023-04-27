@@ -1,4 +1,5 @@
 ﻿@page "/shopping_cart"
+@inject NavigationManager navManager
 @using Common.DataStructure;
 @using Common.Utilitary;
 @using Frontend.Shared.Components
@@ -17,7 +18,7 @@
 				<CartItem Name="@product.Name" Discount="@product.Discount" Price="@product.Price" ProductId="@product.Id" UserId="@user.Id"></CartItem>
 			}
 		</div>
-		
+		<button @onclick="SendOrder">Send Order</button>
     </Authorized>
 </AuthorizeView>
 
@@ -25,19 +26,24 @@
 @code {
 	public List<Product> items { get; set; } = new();
 	User user = new();
+	Request request = new();
 	protected override async Task OnInitializedAsync()
 	{
 		try
 		{
-			Request request = new();
-			
+
+
 			user = await session.GetItemAsync<User>("UserData");
 			items = await request.GetUserProductList(user.Username);
 		}
 		catch (Exception)
 		{
-			
+
 			//Ignore
 		}
+	}
+	public void SendOrder()
+	{
+		navManager.NavigateTo($"/finish-order/{user.Id}", true);
 	}
 }
