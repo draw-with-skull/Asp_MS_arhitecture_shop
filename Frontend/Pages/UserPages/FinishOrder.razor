@@ -2,6 +2,9 @@
 @using Common.DataStructure;
 @using Common.Utilitary;
 @inject Blazored.SessionStorage.ISessionStorageService session
+@inject IJSRuntime js
+
+
 <form enctype="multipart/form-data">
 	<div class="form-group row">
 		<label class="col-sm-2 col-form-label">Name</label>
@@ -36,6 +39,11 @@
 
 	public async void PlaceOrder()
 	{
+		if (name == string.Empty) { await js.InvokeVoidAsync("alert", "Name is not specified"); return; }
+		if (surname	== string.Empty){await js.InvokeVoidAsync("alert", "Surname is not specified");return;}
+		if (city == string.Empty) { await js.InvokeVoidAsync("alert", "City is not specified"); return; }
+		if (address == string.Empty) { await js.InvokeVoidAsync("alert", "Address is not specified"); return; }
+
 		List<Product> products = await request.GetUserProductList((await session.GetItemAsync<User>("UserData")).Username);
 		Order order=new Order(name,surname,userId,city,address,products);
 		await request.SaveItem(order);
