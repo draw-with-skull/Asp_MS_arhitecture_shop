@@ -20,18 +20,27 @@ namespace Order.SRC
 			}
 		}
 		private async void ProcessOrders() {
-			List<Common.DataStructure.Order> orders = await request.GetUnfinishedOrders();
+			List<Common.DataStructure.Order> orders = new();
+			try
+			{
+				orders = await request.GetUnfinishedOrders();
+			}
+			catch (Exception)
+			{
+				//ignore
+				//storage ms may not be running
+			}
 			orders.ForEach((order =>
 			{
 				int OrderTotal = 0;
 				order.Products.ForEach((Product product) =>
 				{
-					int amount = (int)(product.Discount == 0 ? product.Price : (product.Price - (product.Price * (float)(product.Discount / 100))));
+					float minusPercent = (product.Discount / 100f);
+					int amount = (int)(product.Discount == 0 ? product.Price : (product.Price - (product.Price * minusPercent)));
 					OrderTotal += amount;
 				});
 				order.Total = OrderTotal;
-				Console.WriteLine(order.Id);
-				Console.WriteLine(order.Total);
+				_ = request.UpdateOrder(order);
 			}));
 		}
 	}

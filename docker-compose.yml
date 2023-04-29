@@ -10,7 +10,6 @@ services:
     container_name: FrontEnd
     depends_on: 
       - storage
-      - db
     mem_limit: 512m
     mem_reservation: 128M
     cpus: 0.1
@@ -21,6 +20,8 @@ services:
     ports:
       - 3100:80
     container_name: Storage
+    depends_on: 
+      - db
     mem_limit: 512m
     mem_reservation: 128M
     cpus: 0.1
@@ -38,6 +39,18 @@ services:
     mem_limit: 512m
     mem_reservation: 128M
     cpus: 0.1
+  order:
+    build:
+      context: .
+      dockerfile: Order/Dockerfile
+    depends_on: 
+      - storage
+    ports:
+      - 3300:80
+    container_name: Order
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 0.1
   adminpanel:
     build:
       context: .
@@ -45,16 +58,6 @@ services:
     ports:
       - 3200:80
     container_name: AdminPanel
-    mem_limit: 512m
-    mem_reservation: 128M
-    cpus: 0.1
-  order:
-    build:
-      context: .
-      dockerfile: Order/Dockerfile
-    ports:
-      - 3300:80
-    container_name: Order
     mem_limit: 512m
     mem_reservation: 128M
     cpus: 0.1

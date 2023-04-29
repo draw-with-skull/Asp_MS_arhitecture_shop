@@ -35,6 +35,7 @@ namespace Common
 			
 			public const string UPDATE_ITEM = "/update-items";
 			public const string UPDATE_CART_LIST = "/update-product-list";
+			public const string UPDATE_ORDER = "/update-order";
 
 
         }
@@ -59,7 +60,9 @@ namespace Common
 
 			public const string UPDATE_ITEM = STORAGE_BASE + STORAGE_INTERNAL.UPDATE_ITEM;
 			public const string UPDATE_CART_LIST = STORAGE_BASE + STORAGE_INTERNAL.UPDATE_CART_LIST;
-        }
+			public const string UPDATE_ORDER = STORAGE_BASE + STORAGE_INTERNAL.UPDATE_ORDER;
+
+		}
 
 		public class ORDER_INTERNAL
 		{

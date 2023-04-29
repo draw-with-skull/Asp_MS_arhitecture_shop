@@ -79,6 +79,11 @@ namespace Common.Utilitary
         {
             return await client.GetFromJsonAsync<List<Order>>(Endpoints.STORAGE.GET_UNFINISHED_ORDERS)??new();
         }
+
+        public async Task UpdateOrder(Order order)
+        {
+            await client.PostAsJsonAsync(Endpoints.STORAGE.UPDATE_ORDER, order);
+        }
         #endregion
     }
 }

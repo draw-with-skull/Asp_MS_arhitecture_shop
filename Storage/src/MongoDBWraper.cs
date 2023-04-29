@@ -123,6 +123,13 @@ namespace Storage.src
 		{
             return await collectionOrder.Find(P => P.Finished == false).ToListAsync();
 		}
+        public async Task UpdateOrder(Order order)
+        {
+            UpdateDefinition<Order> definition = Builders<Order>.Update
+                .Set(P => P.Total, order.Total)
+                .Set(P => P.Finished,true);
+			await collectionOrder.UpdateOneAsync(P => P.Id == order.Id, definition);
+		}
 		#endregion
 	}
 }
