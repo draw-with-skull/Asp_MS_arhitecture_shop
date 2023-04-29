@@ -12,6 +12,7 @@ namespace Storage.Controllers
 		{
 			mongo = new();
 
+			app.MapGet(Endpoints.STORAGE_INTERNAL.GET_UNFINISHED_ORDERS, () => mongo.GetUnfinishedOrders());
 
 			app.MapPost(Endpoints.STORAGE_INTERNAL.POST_ORDER, (Order order) => mongo.Inser(order));
 		}

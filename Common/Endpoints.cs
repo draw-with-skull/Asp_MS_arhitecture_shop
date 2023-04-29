@@ -16,12 +16,17 @@ namespace Common
 			public const string GET_ITEMS = "/get-items";
 			public const string GET_DISCOUNTED_ITEMS = "/get-discounted-items";
 			public const string GET_ITEM_BY_TAG = "/get-item-by-tag";
+
 			public const string GET_USER = "/get-user";
 			public const string GET_USER_SHOPPING_CART = "/get-user-shopping-cart";
 
+			public const string GET_UNFINISHED_ORDERS = "/get-unifinished-orders";
+
 			public const string POST_ITEM = "/post-item";
 			public const string POST_ITEMS = "/post-items";
+
 			public const string POST_USER = "/post-user";
+
 			public const string POST_ORDER = "/post-order";
 
 			public const string DELETE_ITEM = "/delete-item";
@@ -41,6 +46,7 @@ namespace Common
 			public const string GET_ITEM_BY_TAG = STORAGE_BASE + STORAGE_INTERNAL.GET_ITEM_BY_TAG;
 			public const string GET_USER = STORAGE_BASE + STORAGE_INTERNAL.GET_USER;
 			public const string GET_USER_SHOPPING_CART = STORAGE_BASE + STORAGE_INTERNAL.GET_USER_SHOPPING_CART;
+			public const string GET_UNFINISHED_ORDERS = STORAGE_BASE + STORAGE_INTERNAL.GET_UNFINISHED_ORDERS;
 
 			public const string POST_ITEM = STORAGE_BASE + STORAGE_INTERNAL.POST_ITEM;
 			public const string POST_ITEMS = STORAGE_BASE + STORAGE_INTERNAL.POST_ITEMS;

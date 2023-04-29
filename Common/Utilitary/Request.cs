@@ -75,9 +75,9 @@ namespace Common.Utilitary
 		{
 			await client.PostAsJsonAsync(Endpoints.STORAGE.POST_ORDER, order);
 		}
-		public async Task SendOrder(Order order)
+		public async Task<List<Order>> GetUnfinishedOrders()
         {
-            await client.PostAsJsonAsync(Endpoints.ORDER.PLACE_ORDER, order);
+            return await client.GetFromJsonAsync<List<Order>>(Endpoints.STORAGE.GET_UNFINISHED_ORDERS)??new();
         }
         #endregion
     }

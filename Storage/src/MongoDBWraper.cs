@@ -118,6 +118,11 @@ namespace Storage.src
         {
             await collectionOrder.InsertOneAsync(order);
         }
+
+		public async Task<List<Order>> GetUnfinishedOrders()
+		{
+            return await collectionOrder.Find(P => P.Finished == false).ToListAsync();
+		}
 		#endregion
 	}
 }

@@ -1,6 +1,7 @@
 ﻿@page "/finish-order/{userId}"
 @using Common.DataStructure;
 @using Common.Utilitary;
+@inject Blazored.SessionStorage.ISessionStorageService session
 <form enctype="multipart/form-data">
 	<div class="form-group row">
 		<label class="col-sm-2 col-form-label">Name</label>
@@ -35,8 +36,8 @@
 
 	public async void PlaceOrder()
 	{
-		Order order=new Order(name,surname,userId,city,address);
+		List<Product> products = await request.GetUserProductList((await session.GetItemAsync<User>("UserData")).Username);
+		Order order=new Order(name,surname,userId,city,address,products);
 		await request.SaveItem(order);
-		//await request.SendOrder(order);
 	}
 }

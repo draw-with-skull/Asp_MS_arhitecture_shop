@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using Common.Utilitary;
+using MongoDB.Bson.Serialization.Attributes;
 
 
 namespace Common.DataStructure
@@ -15,7 +16,9 @@ namespace Common.DataStructure
 		public string Address { get; set; } = string.Empty;
 		public DateTime CreationDate { get; set; }
 		public bool Finished { get; set; }
-		public Order(string name, string surname, string userId,string city,string address)
+		public List<Product> Products { get; set; }
+		public int Total { get; set; } = 0;
+		public Order(string name, string surname, string userId,string city,string address,List<Product> products)
 		{
 			Name = name;
 			Surname = surname;
@@ -24,7 +27,7 @@ namespace Common.DataStructure
 			Address = address;
 			CreationDate = DateTime.Now;
 			Finished = false;
-
+			Products = products;
 		}
 	}
 }
