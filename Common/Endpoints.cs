@@ -68,12 +68,12 @@ namespace Common
 
 		public class ORDER_INTERNAL
 		{
-			public const string PLACE_ORDER = "/place-order";
+			public const string SET_INTERVAL = "/set-interval";
 		}
 
 		public class ORDER
 		{
-			public const string PLACE_ORDER = ORDER_BASE + ORDER_INTERNAL.PLACE_ORDER;
+			public const string SET_INTERVAL = ORDER_BASE + ORDER_INTERNAL.SET_INTERVAL;
 		}
 	}
 }

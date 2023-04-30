@@ -5,18 +5,22 @@ namespace Order.SRC
 {
 	public class OrderManager: BackgroundService
 	{
-		private readonly PeriodicTimer timer;
+		private  PeriodicTimer timer;
 		private readonly Request request;
 		public OrderManager(int intervalMs) { 
 			timer = new(TimeSpan.FromMilliseconds(intervalMs));
 			request = new();
 		}
-
+		public void ChangeTimer(int ms)
+		{
+			timer = new (TimeSpan.FromMilliseconds(ms));
+		}
 		protected override async Task ExecuteAsync(CancellationToken stoppingToken)
 		{
 			while (await timer.WaitForNextTickAsync(stoppingToken) && !stoppingToken.IsCancellationRequested)
 			{
 				ProcessOrders();
+				Console.WriteLine("processed"+DateTime.UtcNow);
 			}
 		}
 		private async void ProcessOrders() {

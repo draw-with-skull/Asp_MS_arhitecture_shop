@@ -1,5 +1,7 @@
 ﻿using Common.DataStructure;
 using System.Net.Http.Json;
+using static Common.Endpoints;
+
 namespace Common.Utilitary
 {
     public class Request
@@ -143,9 +145,19 @@ namespace Common.Utilitary
         {
 			try
 			{
-			await client.PostAsJsonAsync(Endpoints.STORAGE.UPDATE_ORDER, order);
+				await client.PostAsJsonAsync(Endpoints.STORAGE.UPDATE_ORDER, order);
 			}
 			catch (Exception) {}//silence ignore,storage ms is not working
+        }
+
+		public async Task SetRunInterval(int ms)
+		{
+            try
+            {
+				await client.GetAsync(Endpoints.ORDER.SET_INTERVAL + $"/{ms}");
+            }
+            catch (Exception) { }//silence ignore,storage ms is not working
+
         }
         #endregion
     }

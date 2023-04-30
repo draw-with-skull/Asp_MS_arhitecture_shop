@@ -1,0 +1,25 @@
+﻿@page "/mangeOrderMs"
+@using Common.Utilitary;
+<form enctype="multipart/form-data">
+    @*ID*@
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><b>Run Interval:</b></label>
+        <label class="col-sm-1 col-form-label">Minutes:</label>
+        <div class="col-sm-2"><input class="form-control" placeholder="Minutes" @bind="minutes" type="text"></div>
+        <label class="col-sm-1 col-form-label">Secconds</label>
+        <div class="col-sm-2"><input class="form-control" placeholder="Seconds" @bind="seconds" type="text"></div>
+        <button class ="col-sm-2 " @onclick="UpdateRunIntervalOrder">Update</button>
+    </div>
+</form>
+@code {
+    public int minutes { get; set; }
+    public int seconds { get; set; }
+
+    Request request = new();
+
+    public async void UpdateRunIntervalOrder()
+    {
+        int time = (60 * minutes + seconds)*1000;
+        await request.SetRunInterval(time);
+    }
+}
