@@ -115,6 +115,10 @@ namespace Common.Utilitary
 			}
 			catch (Exception) {}//silence ignore,storage ms is not working
         }
+		public async void EmptyUserCart(string id)
+		{
+			await client.DeleteAsync(Endpoints.STORAGE.EMPTY_USER_CART + $"/{id}");
+		}
 		#endregion
 
 		#region Order

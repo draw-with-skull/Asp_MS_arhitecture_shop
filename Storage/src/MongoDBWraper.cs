@@ -1,6 +1,7 @@
 ﻿using Common.DataStructure;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using static Common.Endpoints;
 
 namespace Storage.src
 {
@@ -111,10 +112,17 @@ namespace Storage.src
                 Builders<Product>.Filter.Where(P => P.Id == productId));
             await collectionUser.UpdateOneAsync(P => P.Id == userId,definition);
         }
+		public async Task EmptyUserCart(string userId)
+		{
+            UpdateDefinition<User> definition = Builders<User>.Update
+                .Set(P => P.ShoppingCartProducts, new());
+            await collectionUser.UpdateOneAsync(P => P.Id == userId, definition);
+
+		}
 		#endregion
 
 		#region Order
-        public async Task Inser(Order order)
+		public async Task Inser(Order order)
         {
             await collectionOrder.InsertOneAsync(order);
         }
@@ -130,6 +138,8 @@ namespace Storage.src
                 .Set(P => P.Finished,true);
 			await collectionOrder.UpdateOneAsync(P => P.Id == order.Id, definition);
 		}
+
+		
 		#endregion
 	}
 }

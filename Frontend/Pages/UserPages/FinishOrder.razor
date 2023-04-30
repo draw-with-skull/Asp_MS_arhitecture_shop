@@ -47,5 +47,6 @@
 		List<Product> products = await request.GetUserProductList((await session.GetItemAsync<User>("UserData")).Username);
 		Order order=new Order(name,surname,userId,city,address,products);
 		await request.SaveItem(order);
+		request.EmptyUserCart(userId);
 	}
 }
