@@ -1,0 +1,23 @@
+﻿@page "/search"
+@inject NavigationManager navManager
+<form enctype="multipart/form-data">
+    @*ID*@
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Tag:</label>
+        <div class="col-sm-5"><input class="form-control" placeholder="Prduct description" @bind="keyWord" type="text"></div>
+    </div>
+    
+</form>
+<div class="text-center p-5">
+    <button class="btn col-sm-5 mr-5 btn-primary" @onclick="SearchForTag">Search</button>
+
+</div>
+
+@code {
+    public string keyWord { get; set; } = string.Empty;
+
+    public void SearchForTag()
+    {
+        navManager.NavigateTo($"/item-by-tag/{keyWord.ToLower()}");
+    }
+}
