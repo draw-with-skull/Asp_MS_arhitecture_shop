@@ -12,14 +12,21 @@
         <h1 class="text-center">Please login to use the cart</h1>
     </NotAuthorized>
     <Authorized>
-		<div>
-			@foreach (Product product in items)
-			{
-				<CartItem Name="@product.Name" Discount="@product.Discount" Price="@product.Price" ProductId="@product.Id" UserId="@user.Id"></CartItem>
-			}
-		</div>
-		<button @onclick="SendOrder">Send Order</button>
-    </Authorized>
+		@if (items.Count == 0)
+		{
+			<h1 class="text-center">The Cart is empty</h1>
+		}
+		else
+		{
+			<div>
+				@foreach (Product product in items)
+				{
+					<CartItem Name="@product.Name" Discount="@product.Discount" Price="@product.Price" ProductId="@product.Id" UserId="@user.Id"></CartItem>
+				}
+			</div>
+			<button @onclick="SendOrder">Send Order</button>
+		}
+	</Authorized>
 </AuthorizeView>
 
 
@@ -33,7 +40,7 @@
 		{
 
 
-			user = await session.GetItemAsync<User>("UserData");
+			user = await session.GetItemAsync<User>("UserData")??new();
 			items = await request.GetUserProductList(user.Username);
 		}
 		catch (Exception)
