@@ -119,7 +119,11 @@ namespace Common.Utilitary
         }
 		public async void EmptyUserCart(string id)
 		{
-			await client.DeleteAsync(Endpoints.STORAGE.EMPTY_USER_CART + $"/{id}");
+			try
+			{
+				await client.DeleteAsync(Endpoints.STORAGE.EMPTY_USER_CART + $"/{id}");
+			}
+			catch (Exception) { }//silence ignore,storage ms is not working
 		}
 		#endregion
 
