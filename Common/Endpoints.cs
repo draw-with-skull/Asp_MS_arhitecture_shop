@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -69,11 +70,15 @@ namespace Common
 		public class ORDER_INTERNAL
 		{
 			public const string SET_INTERVAL = "/set-interval";
+			public const string START = "/start";
+			public const string STOP = "/stop";
 		}
 
 		public class ORDER
 		{
 			public const string SET_INTERVAL = ORDER_BASE + ORDER_INTERNAL.SET_INTERVAL;
+			public const string START = ORDER_BASE + ORDER_INTERNAL.START;
+			public const string STOP = ORDER_BASE + ORDER_INTERNAL.STOP;
 		}
 	}
 }

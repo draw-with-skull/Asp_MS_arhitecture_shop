@@ -163,6 +163,24 @@ namespace Common.Utilitary
             catch (Exception) { }//silence ignore,storage ms is not working
 
         }
+
+		public async void StartOrderMs()
+		{
+            try
+            {
+                await client.GetAsync(Endpoints.ORDER.START);
+            }
+            catch (Exception) { }//silence ignore,storage ms is not working
+        }
+        public async void StopOrderMs()
+        {
+            try
+            {
+                await client.GetAsync(Endpoints.ORDER.STOP);
+            }
+            catch (Exception) { }//silence ignore,storage ms is not working
+        }
+
         #endregion
     }
 }
