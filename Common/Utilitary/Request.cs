@@ -144,6 +144,23 @@ namespace Common.Utilitary
 			}
 			catch (Exception) { return new(); }//silence ignore,storage ms is not working
         }
+        public async Task<List<Order>> GetFinishedOrders()
+        {
+            try
+            {
+                return await client.GetFromJsonAsync<List<Order>>(Endpoints.STORAGE.GET_FINISHED_ORDERS) ?? new();
+            }
+            catch (Exception) { return new(); }//silence ignore,storage ms is not working
+        }
+
+        public async Task<List<Order>> GetAllOrders()
+		{
+            try
+            {
+                return await client.GetFromJsonAsync<List<Order>>(Endpoints.STORAGE.GET_ALL_ORDERS) ?? new();
+            }
+            catch (Exception) { return new(); }//silence ignore,storage ms is not working
+        }
 
         public async Task UpdateOrder(Order order)
         {

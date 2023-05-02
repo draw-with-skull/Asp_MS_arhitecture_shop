@@ -131,6 +131,15 @@ namespace Storage.src
 		{
             return await collectionOrder.Find(P => P.Finished == false).ToListAsync();
 		}
+
+        public async Task<List<Order>> GetFinishedOrders()
+        {
+            return await collectionOrder.Find(P => P.Finished == true).ToListAsync();
+        }
+        public async Task<List<Order>> GetAllOrders()
+        {
+            return await collectionOrder.Find(_=>true).ToListAsync();
+        }
         public async Task UpdateOrder(Order order)
         {
             UpdateDefinition<Order> definition = Builders<Order>.Update
@@ -138,6 +147,7 @@ namespace Storage.src
                 .Set(P => P.Finished,true);
 			await collectionOrder.UpdateOneAsync(P => P.Id == order.Id, definition);
 		}
+
 
 		
 		#endregion

@@ -22,7 +22,9 @@ namespace Common
 			public const string GET_USER_SHOPPING_CART = "/get-user-shopping-cart";
 			public const string EMPTY_USER_CART = "/empty-user-cart";
 
-			public const string GET_UNFINISHED_ORDERS = "/get-unifinished-orders";
+			public const string GET_UNFINISHED_ORDERS = "/get-unfinished-orders";
+			public const string GET_FINISHED_ORDERS = "/get-finished-orders";
+            public const string GET_ALL_ORDERS = "/get-all-orders";
 
 			public const string POST_ITEM = "/post-item";
 			public const string POST_ITEMS = "/post-items";
@@ -50,7 +52,9 @@ namespace Common
 			public const string GET_USER = STORAGE_BASE + STORAGE_INTERNAL.GET_USER;
 			public const string GET_USER_SHOPPING_CART = STORAGE_BASE + STORAGE_INTERNAL.GET_USER_SHOPPING_CART;
 			public const string GET_UNFINISHED_ORDERS = STORAGE_BASE + STORAGE_INTERNAL.GET_UNFINISHED_ORDERS;
-			public const string EMPTY_USER_CART = STORAGE_BASE + STORAGE_INTERNAL.EMPTY_USER_CART;
+			public const string GET_FINISHED_ORDERS = STORAGE_BASE + STORAGE_INTERNAL.GET_FINISHED_ORDERS;
+			public const string GET_ALL_ORDERS = STORAGE_BASE + STORAGE_INTERNAL.GET_ALL_ORDERS;
+            public const string EMPTY_USER_CART = STORAGE_BASE + STORAGE_INTERNAL.EMPTY_USER_CART;
 
 			public const string POST_ITEM = STORAGE_BASE + STORAGE_INTERNAL.POST_ITEM;
 			public const string POST_ITEMS = STORAGE_BASE + STORAGE_INTERNAL.POST_ITEMS;
