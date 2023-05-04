@@ -1,0 +1,18 @@
+﻿@page "/unfinishedOrders"
+@using Common.DataStructure;
+@using Common.Utilitary;
+<h3>Unfinished Orders</h3>
+
+@if (Orders.Count == 0){<h1>Empty</h1>}else{<h1>Count: @Orders.Count</h1>}
+@foreach(Order order in Orders)
+{
+	<AdminPanel.Shared.Components.OrderCard order="order"/>
+}
+@code {
+	List<Order> Orders = new();
+	Request request = new();
+	protected override async Task OnInitializedAsync()
+	{
+		 Orders = await request.GetUnfinishedOrders();
+	}
+}

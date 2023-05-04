@@ -134,11 +134,12 @@ namespace Storage.src
 
         public async Task<List<Order>> GetFinishedOrders()
         {
-            return await collectionOrder.Find(P => P.Finished == true).ToListAsync();
+			return await collectionOrder.Find(P => P.Finished == true).ToListAsync();
+
         }
         public async Task<List<Order>> GetAllOrders()
         {
-            return await collectionOrder.Find(_=>true).ToListAsync();
+			return await collectionOrder.Find(_=>true).ToListAsync();
         }
         public async Task UpdateOrder(Order order)
         {

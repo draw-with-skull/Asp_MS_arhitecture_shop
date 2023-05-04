@@ -1,0 +1,15 @@
+﻿@using Common.DataStructure;
+<div class='card card-body'>
+	<div class="row">
+		<div class='col p-2 card-text'>ID :@order.Id</div>
+		<div class='col p-2 card-text'>Date :@order.CreationDate</div>
+		<div class='col p-2 card-text'>Order Total:@order.Total</div>
+		<div class='col p-2 card-text'>Number of products:@order.Products.Count</div>
+		<div class='col p-2 card-text'>Address:@order.Address</div>
+	</div>
+</div>
+
+@code {
+	[Parameter]
+	public Order order { get; set; }
+}

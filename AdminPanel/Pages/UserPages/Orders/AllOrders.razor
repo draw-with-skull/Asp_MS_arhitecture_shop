@@ -1,0 +1,22 @@
+﻿@page "/allOrders"
+@using Common.DataStructure;
+@using Common.Utilitary;
+
+<h3>All Orders</h3>
+
+@foreach(Order order in Orders)
+{
+	<AdminPanel.Shared.Components.OrderCard order="order"/>
+}
+@if (Orders.Count == 0)
+{
+	<h1>Empty</h1>
+}
+@code {
+	List<Order> Orders = new();
+	Request request = new();
+	protected override async Task OnInitializedAsync()
+	{
+		 Orders = await request.GetAllOrders();
+	}
+}

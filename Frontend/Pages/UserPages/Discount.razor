@@ -1,4 +1,5 @@
 ﻿@page "/discount"
+@using Frontend.Shared.Components
 @using Common.DataStructure;
 @using Common.Utilitary;
 <PageTitle>Discount</PageTitle>
@@ -8,7 +9,7 @@
 		<div class="row">
 			@foreach (Product prod in list)
 			{
-				<Frontend.Shared.Components.Card ID="@prod.Id" Name="@prod.Name" Description="@prod.Description" Discount="@prod.Discount" Price="prod.Price" ImageBase64="@prod.ImageBase64" Tags="@String.Join(",",prod.Tags)" />
+				<Card ID="@prod.Id" Name="@prod.Name" Description="@prod.Description" Discount="@prod.Discount" Price="prod.Price" ImageBase64="@prod.ImageBase64" Tags="@String.Join(",",prod.Tags)" />
 			}
 		</div>
 	}
