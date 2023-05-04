@@ -16,11 +16,6 @@
 
 @code {
     public string keyWord { get; set; } = string.Empty;
-    protected override async Task OnInitializedAsync()
-    {
-
-        keyWord = "";
-    }
     public void SearchForTag()
     {
         navManager.NavigateTo($"/item-by-tag/{keyWord.ToLower()}");

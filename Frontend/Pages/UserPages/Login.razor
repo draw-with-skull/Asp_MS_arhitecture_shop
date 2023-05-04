@@ -6,6 +6,8 @@
 @inject AuthenticationStateProvider authStateProvider
 @inject NavigationManager navManager
 @inject Blazored.SessionStorage.ISessionStorageService session
+
+
 <PageTitle>Login</PageTitle>
 <div class="row">
     <div class="col-lg-4 offset-lg-4 pt-4 pb-4 border">
@@ -27,8 +29,8 @@
 </div>
 
 @code {
-    string username = "";
-    string password = "";
+    string username = string.Empty;
+    string password = string.Empty;
     User user = new();
     Request request = new();
 
@@ -37,8 +39,8 @@
     {
         password = Hashing.GetHash(password);
         user = await request.GetUserData(username,password);
-        password = "";
-        username = "";
+        password = string.Empty;
+        username = string.Empty;
         if (user.Username == null || user.Username == "")
         {
             await js.InvokeVoidAsync("alert", "Invalid User Name or Password");

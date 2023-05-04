@@ -20,17 +20,17 @@
 @code {
     Request request = new();
     [Parameter]
-    public string ID { get; set; } = "";
+    public string ID { get; set; } = string.Empty;
     [Parameter]
-    public string Name { get; set; } = "";
+    public string Name { get; set; } = string.Empty;
     [Parameter]
-    public string Description { get; set; } = "";
+    public string Description { get; set; } = string.Empty;
     [Parameter]
     public int Price { get; set; }
     [Parameter]
     public int Discount { get; set; }
     [Parameter]
-    public string Tags { get; set; } = "";
+    public string Tags { get; set; } = string.Empty;
 
     public void EditItem()
     {

@@ -16,7 +16,7 @@
 </div>
 @code {
 	[Parameter]
-	public string tag { get; set; } = "";
+	public string tag { get; set; } = string.Empty;
 
 	List<List<Product>> Items = new();
 	Request request = new();

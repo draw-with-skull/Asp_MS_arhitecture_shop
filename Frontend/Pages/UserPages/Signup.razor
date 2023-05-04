@@ -42,8 +42,8 @@
 @code {
     User user = new();
     Request request = new();
-    string password = "";
-    string passwordRepet = "";
+    string password = string.Empty;
+    string passwordRepet = string.Empty;
 
 
     private async Task SignUp()
@@ -51,8 +51,8 @@
         if (password.Equals(passwordRepet)&&password!="")
         {
             user.Password = Hashing.GetHash(password);
-            password = "";
-            passwordRepet = "";
+            password = string.Empty;
+            passwordRepet = string.Empty;
             await request.SaveItem(user);
             navManager.NavigateTo("/login", true);
         }

@@ -20,7 +20,7 @@
 </div>
 @code {
     [Parameter]
-    public string ID { get; set; } = "";
+    public string ID { get; set; } = string.Empty;
     [Parameter]
     public string Name { get; set; } = "Name";
     [Parameter]
@@ -30,9 +30,9 @@
     [Parameter]
     public int Discount { get; set; } = 0;
     [Parameter]
-    public string ImageBase64 { get; set; } = "";
+    public string ImageBase64 { get; set; } = string.Empty;
     [Parameter]
-    public string Tags { get; set; } = "";
+    public string Tags { get; set; } = string.Empty;
 
 
     private Request request = new();

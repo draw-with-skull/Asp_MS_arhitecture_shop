@@ -85,7 +85,7 @@ namespace Storage.src
             try
             {
                 user = (await collectionUser.FindAsync(U => (U.Username == name && U.Password == password))).First();
-                user.Password = "";
+                user.Password = string.Empty;
             }
             catch (Exception)
             {
