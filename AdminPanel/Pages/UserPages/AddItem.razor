@@ -55,7 +55,7 @@
 
     private void SubmitItem()
     {
-        Tags = tagsAsString.Split(",").ToList();
+        Tags = tagsAsString.ToLower().Split(",").ToList();
         request.SaveItem(new Product(name, description, discount, price, imageBase64,Tags));
     }
 

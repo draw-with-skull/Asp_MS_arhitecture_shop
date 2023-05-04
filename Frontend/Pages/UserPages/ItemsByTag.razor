@@ -16,14 +16,15 @@
 </div>
 @code {
 	[Parameter]
-	public string tag { get; set; } = string.Empty;
+	public string tag { get; set; } = "";
 
 	List<List<Product>> Items = new();
 	Request request = new();
 
 	protected override async Task OnInitializedAsync()
 	{
-		List<Product> Data = await request.GetItemsWithTag(tag);
+		
+		List<Product> Data = await request.GetItemsWithTag(tag.ToLower());
 		GenerateStructureForDisplay(Data);
 	}
 
