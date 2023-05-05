@@ -48,6 +48,8 @@
 
     private async Task SignUp()
     {
+
+        
         if (password.Equals(passwordRepet)&&password!="")
         {
             user.Password = Hashing.GetHash(password);

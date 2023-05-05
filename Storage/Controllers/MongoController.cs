@@ -10,29 +10,29 @@ namespace Storage.Controllers
         public ProductController(WebApplication app)
         {
             mongo = new();
-            app.MapGet(Endpoints.STORAGE_INTERNAL.GET_ITEM + "/{id}", (string id) =>
+            app.MapGet(Endpoints.STORAGE.INTERNAL.PRODUCT.GET_PRODUCT + "/{id}", (string id) =>
             {
                 return mongo.GetItemByID(id);
             });
-            app.MapGet(Endpoints.STORAGE_INTERNAL.GET_ITEMS, () =>
+            app.MapGet(Endpoints.STORAGE.INTERNAL.PRODUCT.GET_PRODUCTS, () =>
             {
                 return mongo.GetAll();
             });
 
-            app.MapGet(Endpoints.STORAGE_INTERNAL.GET_DISCOUNTED_ITEMS, () =>
+            app.MapGet(Endpoints.STORAGE.INTERNAL.PRODUCT.GET_DISCOUNTED_PRODUCTS, () =>
             {
                 return mongo.GetDiscountedItems();
             });
 
-            app.MapGet(Endpoints.STORAGE_INTERNAL.GET_ITEM_BY_TAG + "/{tag}", (string tag) =>
+            app.MapGet(Endpoints.STORAGE.INTERNAL.PRODUCT.GET_PRODUCT_BY_TAG + "/{tag}", (string tag) =>
             {
                 return mongo.GetItemsWithTag(tag);
             });
 
-            app.MapPost(Endpoints.STORAGE_INTERNAL.UPDATE_ITEM, (Product product) => mongo.UpdateItem(product));
-            app.MapPost(Endpoints.STORAGE_INTERNAL.POST_ITEM, (Product product) => mongo.Insert(product));
+            app.MapPost(Endpoints.STORAGE.INTERNAL.PRODUCT.UPDATE_ITEM, (Product product) => mongo.UpdateItem(product));
+            app.MapPost(Endpoints.STORAGE.INTERNAL.PRODUCT.POST_ITEM, (Product product) => mongo.Insert(product));
 
-            app.MapDelete(Endpoints.STORAGE_INTERNAL.DELETE_ITEM + "/{id}", (string id) => mongo.RemoveOneByID(id));
+            app.MapDelete(Endpoints.STORAGE.INTERNAL.PRODUCT.DELETE_ITEM + "/{id}", (string id) => mongo.RemoveOneByID(id));
 
         }
     }

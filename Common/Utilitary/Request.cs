@@ -16,7 +16,7 @@ namespace Common.Utilitary
         {
             try
             {
-				return await client.GetFromJsonAsync<List<Product>>(Endpoints.STORAGE.GET_ITEMS) ?? new();
+				return await client.GetFromJsonAsync<List<Product>>(Endpoints.STORAGE.PRODUCT.GET_PRODUCTS) ?? new();
 			}
 			catch (Exception) { return new(); }//silence ignore,storage ms is not working
 		}
@@ -24,7 +24,7 @@ namespace Common.Utilitary
         public async Task<Product> GetItemByID(string id) {
 			try
 			{
-				return await client.GetFromJsonAsync<Product>(Endpoints.STORAGE.GET_ITEM+$"/{id}")??new();
+				return await client.GetFromJsonAsync<Product>(Endpoints.STORAGE.PRODUCT.GET_PRODUCT+$"/{id}")??new();
 		    }
 			catch (Exception) { return new(); }//silence ignore,storage ms is not working
 		}
@@ -33,7 +33,7 @@ namespace Common.Utilitary
         {
 			try
 			{
-				return await client.GetFromJsonAsync<List<Product>>(Endpoints.STORAGE.GET_DISCOUNTED_ITEMS)??new();
+				return await client.GetFromJsonAsync<List<Product>>(Endpoints.STORAGE.PRODUCT.GET_DISCOUNTED_PRODUCTS)??new();
             }
             catch (Exception){return new();}//silence ignore,storage ms is not working
         }
@@ -42,7 +42,7 @@ namespace Common.Utilitary
         {
             try 
             { 
-                return await client.GetFromJsonAsync<List<Product>>(Endpoints.STORAGE.GET_ITEM_BY_TAG + $"/{tag}")??new();
+                return await client.GetFromJsonAsync<List<Product>>(Endpoints.STORAGE.PRODUCT.GET_PRODUCT_BY_TAG+ $"/{tag}")??new();
 		    }
             catch (Exception){return new ();}//silence ignore,storage ms is not working
         }
@@ -50,7 +50,7 @@ namespace Common.Utilitary
         {
 			try
 			{
-				await client.DeleteAsync(Endpoints.STORAGE.DELETE_ITEM + $"/{id}");
+				await client.DeleteAsync(Endpoints.STORAGE.PRODUCT.DELETE_ITEM + $"/{id}");
 			}
 			catch (Exception) {}//silence ignore,storage ms is not working
         }
@@ -59,7 +59,7 @@ namespace Common.Utilitary
         {
 			try
 			{
-				await client.DeleteAsync(Endpoints.STORAGE.DELETE_ITEM_FROM_USER_CART + $"/{userId}/{productId}");
+				await client.DeleteAsync(Endpoints.STORAGE.USER.DELETE_ITEM_FROM_USER_CART + $"/{userId}/{productId}");
 			}
 			catch (Exception) { }//silence ignore,storage ms is not working
         }
@@ -68,7 +68,7 @@ namespace Common.Utilitary
         {
 			try
 			{
-				await client.PostAsJsonAsync(Endpoints.STORAGE.POST_ITEM, product);
+				await client.PostAsJsonAsync(Endpoints.STORAGE.PRODUCT.POST_ITEM, product);
 			}
 			catch (Exception) {}//silence ignore,storage ms is not working
         }
@@ -78,7 +78,7 @@ namespace Common.Utilitary
         {
 			try
 			{
-				await client.PostAsJsonAsync(Endpoints.STORAGE.UPDATE_ITEM, product);
+				await client.PostAsJsonAsync(Endpoints.STORAGE.PRODUCT.UPDATE_ITEM, product);
 			}
 			catch (Exception) {}//silence ignore,storage ms is not working
         }
@@ -88,7 +88,7 @@ namespace Common.Utilitary
         {
 			try
 			{
-				await client.PostAsJsonAsync(Endpoints.STORAGE.POST_USER, user);
+				await client.PostAsJsonAsync(Endpoints.STORAGE.USER.POST_USER, user);
 			}
 			catch (Exception) {}//silence ignore,storage ms is not working
         }
@@ -96,7 +96,7 @@ namespace Common.Utilitary
         {
 			try
 			{
-				return await client.GetFromJsonAsync<User>(Endpoints.STORAGE.GET_USER+ $"/{username}/{password}")??new();
+				return await client.GetFromJsonAsync<User>(Endpoints.STORAGE.USER.GET_USER+ $"/{username}/{password}")??new();
 			}
 			catch (Exception) { return new(); }//silence ignore,storage ms is not working
         }
@@ -105,7 +105,7 @@ namespace Common.Utilitary
         {
 			try
 			{
-				return await client.GetFromJsonAsync<List<Product>>(Endpoints.STORAGE.GET_USER_SHOPPING_CART+$"/{username}")??new();
+				return await client.GetFromJsonAsync<List<Product>>(Endpoints.STORAGE.USER.GET_USER_SHOPPING_CART+$"/{username}")??new();
 			}
 			catch (Exception) { return new(); }//silence ignore,storage ms is not working
         }
@@ -113,7 +113,7 @@ namespace Common.Utilitary
         {
 			try
 			{
-			await client.PostAsJsonAsync(Endpoints.STORAGE.UPDATE_CART_LIST,user);
+			await client.PostAsJsonAsync(Endpoints.STORAGE.USER.UPDATE_CART_LIST,user);
 			}
 			catch (Exception) {}//silence ignore,storage ms is not working
         }
@@ -121,7 +121,7 @@ namespace Common.Utilitary
 		{
 			try
 			{
-				await client.DeleteAsync(Endpoints.STORAGE.EMPTY_USER_CART + $"/{id}");
+				await client.DeleteAsync(Endpoints.STORAGE.USER.EMPTY_USER_CART + $"/{id}");
 			}
 			catch (Exception) { }//silence ignore,storage ms is not working
 		}
@@ -132,7 +132,7 @@ namespace Common.Utilitary
 		{
 			try
 			{
-			await client.PostAsJsonAsync(Endpoints.STORAGE.POST_ORDER, order);
+			await client.PostAsJsonAsync(Endpoints.STORAGE.ORDER.POST_ORDER, order);
 			}
 			catch (Exception) {}//silence ignore,storage ms is not working
 		}
@@ -140,7 +140,7 @@ namespace Common.Utilitary
         {
 			try
 			{
-			return await client.GetFromJsonAsync<List<Order>>(Endpoints.STORAGE.GET_UNFINISHED_ORDERS)??new();
+			return await client.GetFromJsonAsync<List<Order>>(Endpoints.STORAGE.ORDER.GET_UNFINISHED_ORDERS)??new();
 			}
 			catch (Exception) { return new(); }//silence ignore,storage ms is not working
         }
@@ -148,7 +148,7 @@ namespace Common.Utilitary
         {
             try
             {
-                return await client.GetFromJsonAsync<List<Order>>(Endpoints.STORAGE.GET_FINISHED_ORDERS) ?? new();
+                return await client.GetFromJsonAsync<List<Order>>(Endpoints.STORAGE.ORDER.GET_FINISHED_ORDERS) ?? new();
             }
             catch (Exception) { return new(); }//silence ignore,storage ms is not working
         }
@@ -157,7 +157,7 @@ namespace Common.Utilitary
 		{
             try
             {
-                return await client.GetFromJsonAsync<List<Order>>(Endpoints.STORAGE.GET_ALL_ORDERS) ?? new();
+                return await client.GetFromJsonAsync<List<Order>>(Endpoints.STORAGE.ORDER.GET_ALL_ORDERS) ?? new();
             }
             catch (Exception) { return new(); }//silence ignore,storage ms is not working
         }
@@ -166,7 +166,7 @@ namespace Common.Utilitary
         {
 			try
 			{
-				await client.PostAsJsonAsync(Endpoints.STORAGE.UPDATE_ORDER, order);
+				await client.PostAsJsonAsync(Endpoints.STORAGE.ORDER.UPDATE_ORDER, order);
 			}
 			catch (Exception) {}//silence ignore,storage ms is not working
         }
