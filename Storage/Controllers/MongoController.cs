@@ -16,6 +16,7 @@ namespace Storage.Controllers
             });
             app.MapGet(Endpoints.STORAGE.INTERNAL.PRODUCT.GET_PRODUCTS, () =>
             {
+                Console.WriteLine("got here");
                 return mongo.GetAll();
             });
 

@@ -16,7 +16,7 @@ namespace Common.Utilitary
         {
             try
             {
-				return await client.GetFromJsonAsync<List<Product>>(Endpoints.STORAGE.PRODUCT.GET_PRODUCTS) ?? new();
+				return await client.GetFromJsonAsync<List<Product>>(STORAGE.PRODUCT.GET_PRODUCTS) ?? new();
 			}
 			catch (Exception) { return new(); }//silence ignore,storage ms is not working
 		}
