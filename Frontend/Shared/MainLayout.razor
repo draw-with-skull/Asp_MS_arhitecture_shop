@@ -19,8 +19,7 @@
             <div class =" col-sm d-flex flex-row-reverse">
                 <AuthorizeView>
                     <Authorized>
-                        <p>Loged in as: <b>@context.User.Identity.Name</b></p>
-                        <a class="btn btn-info" role="button" @onclick="Logout" href="javascript:void(0)">Logout</a>
+                        <a class="btn text-light m-2" style="background-image:none;background-color:#1c2f2f;" role="button" @onclick="Logout" href="javascript:void(0)">Logout</a>
                     </Authorized>
                     <NotAuthorized>
                         <a class="btn text-light m-2" style="background-image:none;background-color:#1c2f2f;" role="button" href="/signup">SignUp</a>

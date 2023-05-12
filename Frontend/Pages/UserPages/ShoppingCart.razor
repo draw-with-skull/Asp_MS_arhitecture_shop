@@ -24,7 +24,7 @@
 					<CartItem Name="@product.Name" Discount="@product.Discount" Price="@product.Price" ProductId="@product.Id" UserId="@user.Id"></CartItem>
 				}
 			</div>
-			<button @onclick="SendOrder">Send Order</button>
+			<button class="btn text-light m-2" style="background-image:none;background-color:#1c2f2f;" @onclick="SendOrder">Send Order</button>
 		}
 	</Authorized>
 </AuthorizeView>
