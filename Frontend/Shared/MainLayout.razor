@@ -6,22 +6,28 @@
 <PageTitle>Frontend</PageTitle>
 
 <div class="page">
-    <div class="sidebar">
+    <div class="sidebar" style="background-image:none;background-color:darkslategrey;">
         <NavMenu />
     </div>
 
-    <main>
-        <div class="top-row px-4">
-            <AuthorizeView>
-                <Authorized>
-                    <p>Loged in as: <b>@context.User.Identity.Name</b></p>
-                    <a class="btn btn-info" role="button" @onclick="Logout" href="javascript:void(0)">Logout</a>
-                </Authorized>
-                <NotAuthorized>
-                    <a class ="btn btn-info" role="button" href="/signup">SignUp</a>
-                    <a class ="btn btn-info" role="button" href="/login">Login</a>
-                </NotAuthorized>
-            </AuthorizeView>
+    <main style="background-image:none;background-color:#e1eeee;" >
+        <div class="row" style="background-image:none;background-color:darkslategrey;">
+            <div class="col-sm d-flex flex-row w-50">
+                <input class="form-control m-2" placeholder="Prduct description" type="text" @bind="keyWord">
+                <button class="btn text-light m-2" style="background-image:none;background-color:#1c2f2f;" @onclick="SearchForTag">Search</button>
+            </div>
+            <div class =" col-sm d-flex flex-row-reverse">
+                <AuthorizeView>
+                    <Authorized>
+                        <p>Loged in as: <b>@context.User.Identity.Name</b></p>
+                        <a class="btn btn-info" role="button" @onclick="Logout" href="javascript:void(0)">Logout</a>
+                    </Authorized>
+                    <NotAuthorized>
+                        <a class="btn text-light m-2" style="background-image:none;background-color:#1c2f2f;" role="button" href="/signup">SignUp</a>
+                        <a class="btn text-light m-2" style="background-image:none;background-color:#1c2f2f;" role="button" href="/login">Login</a>
+                    </NotAuthorized>
+                </AuthorizeView>
+            </div>
         </div>
         <article class="content px-4">
             @Body
@@ -36,5 +42,10 @@
         CustomAuthStateProvider customAuthStateProvider = (CustomAuthStateProvider)authStateProvider;
         await customAuthStateProvider.UpdateAuthenticationState(null);
         navManager.NavigateTo("/", true);
+    }
+    public string keyWord { get; set; } = string.Empty;
+    public void SearchForTag()
+    {
+        navManager.NavigateTo($"/item-by-tag/{keyWord.ToLower()}");
     }
 }
