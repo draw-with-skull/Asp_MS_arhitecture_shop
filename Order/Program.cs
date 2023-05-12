@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 //Background order Processing
-OrderManager orderManager = new(1000);// One minute by default
+OrderManager orderManager = new(60*1000);// One minute by default
 
 var app = builder.Build();
 
