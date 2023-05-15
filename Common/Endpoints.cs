@@ -9,8 +9,8 @@ namespace Common
 {
 	public static class Endpoints
 	{
-        private const string STORAGE_BASE = "http://localhost:3100";
-        //private const string STORAGE_BASE = "http://storage";
+        //private const string STORAGE_BASE = "http://localhost:3100";
+        private const string STORAGE_BASE = "http://storage";
 		private const string ORDER_BASE = "http://order";
 
 		public  class STORAGE
