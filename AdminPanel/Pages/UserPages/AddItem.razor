@@ -53,26 +53,27 @@
     string tagsAsString = string.Empty;
     List<string> Tags = new();
 
-    private void SubmitItem()
+    private async void SubmitItem()
     {
         Tags = tagsAsString.ToLower().Split(",").ToList();
-        request.SaveItem(new Product(name, description, discount, price, imageBase64,Tags));
+        await request.SaveItem(new Product(name, description, discount, price, imageBase64,Tags));
     }
 
 
     async Task OnChange(InputFileChangeEventArgs e)
     {
         string format = "image/jpeg";
-        long maxSize = 512000000;
 
-        foreach(IBrowserFile file in e.GetMultipleFiles())
+        foreach (IBrowserFile file in e.GetMultipleFiles())
         {
             if (string.Equals(file.ContentType, format, StringComparison.OrdinalIgnoreCase))
             {
-                IBrowserFile image = await file.RequestImageFileAsync(format,1000,1000);
-                byte[]buffer = new byte[image.Size];
-
-                await image.OpenReadStream(maxAllowedSize: maxSize).ReadAsync(buffer);
+                long maxFileSize = 1024 * 1024 * 5; // 5 MB 
+                var readStream = (await file.RequestImageFileAsync(format, 600, 600)).OpenReadStream(maxFileSize);
+                var buf = new byte[readStream.Length];
+                var ms = new MemoryStream(buf);
+                await readStream.CopyToAsync(ms);
+                var buffer = ms.ToArray();
                 imageBase64 = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
             }
         }

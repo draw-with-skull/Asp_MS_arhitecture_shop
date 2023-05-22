@@ -28,7 +28,6 @@
     }
     public async Task RemoveItem()
     {
-        Product product = new();
         await request.RemoveItemByID(product.Id);
         navManager.NavigateTo("/manageItems", true);
     }
